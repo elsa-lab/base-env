@@ -1,7 +1,12 @@
 #!/bin/sh
 
+# extends the sudo timeout for another 15 minutes
 sudo -v
+
+# uninstall old versions, it’s OK if apt-get reports that none of these packages are installed
 sudo apt-get remove -y docker docker-engine docker.io
+
+# add the package repositories
 sudo apt-get update
 sudo sudo apt-get install -y \
   apt-transport-https \
@@ -14,8 +19,12 @@ sudo add-apt-repository -y \
   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) \
   stable"
+
+# install docker CE
 sudo apt-get update
 sudo apt-get install -y docker-ce
+
+# install docker compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) \
   -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose

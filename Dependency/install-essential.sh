@@ -1,6 +1,9 @@
 #!/bin/sh
 
+# extends the sudo timeout for another 15 minutes
 sudo -v
+
+# install default packages
 sudo apt-get update
 sudo apt-get install -y \
   smartmontools \
