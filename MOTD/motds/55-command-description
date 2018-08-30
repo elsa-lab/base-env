@@ -14,7 +14,7 @@ print_com_des () {
   DESCRIPTION="$2"
   printf "  "
   printf "${COMMAND_VAR}" "${COMMAND}"
-  type "${COMMAND}" &> /dev/null
+  type "${COMMAND}" > /dev/null
   if [ $? -eq 0 ]; then
     printf "${GREEN}${STATUS_VAR}${RESET}" "Available"
   else
