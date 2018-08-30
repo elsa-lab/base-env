@@ -3,5 +3,5 @@
 sudo -v
 sudo apt-get update
 sudo apt-get install -y xfce4 xfce4-goodies
-sudo apt-get remove xscreensaver
-sudo apt autoremove
+sudo apt-get remove -y xscreensaver
+sudo apt autoremove -y

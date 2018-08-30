@@ -5,5 +5,5 @@
 
 sudo -v
 sudo apt-get update
-sudo apt-get install python-opencv
+sudo apt-get install -y python-opencv
 sudo -H pip3 install opencv-python
