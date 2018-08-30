@@ -1,7 +1,7 @@
 #!/bin/sh
 
 sudo -v
-sudo apt-get remove docker docker-engine docker.io
+sudo apt-get remove -y docker docker-engine docker.io
 sudo apt-get update
 sudo sudo apt-get install -y \
   apt-transport-https \
