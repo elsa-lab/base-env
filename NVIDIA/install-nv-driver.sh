@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # useful variables
 DRIVER_VERSION="390.67"
