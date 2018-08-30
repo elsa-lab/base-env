@@ -11,8 +11,10 @@ cd /tmp
 curl -L "${CUDA_LINK}" -o "${CUDA_INSTALLER}"
 chmod +x "${CUDA_INSTALLER}"
 
-# install cuda toolkit
+# extends the sudo timeout for another 15 minutes
 sudo -v
+
+# install cuda toolkit
 sudo ./"${CUDA_INSTALLER}" \
   --silent \
   --toolkit
@@ -22,8 +24,8 @@ cd /tmp
 curl -L "${CUDNN_LINK}" -O
 
 # install cudnn library to cuda home
-sudo tar --no-same-owner -xzf ${CUDNN_TGZ} -C /usr/local
+sudo tar --no-same-owner -xzf "${CUDNN_TGZ}" -C /usr/local
 
 # clean up
-rm -f ${CUDA_INSTALLER}
-rm -f ${CUDNN_TGZ}
+rm -f "${CUDA_INSTALLER}"
+rm -f "${CUDNN_TGZ}"

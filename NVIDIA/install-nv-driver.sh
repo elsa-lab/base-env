@@ -5,8 +5,10 @@ DRIVER_VERSION="390.67"
 DRIVER_INSTALLER="NVIDIA-Linux-x86_64-${DRIVER_VERSION}.run"
 DRIVER_LINK="http://us.download.nvidia.com/XFree86/Linux-x86_64/${DRIVER_VERSION}/${DRIVER_INSTALLER}"
 
-# install dkms first
+# extends the sudo timeout for another 15 minutes
 sudo -v
+
+# install dkms first
 sudo apt install -y dkms
 
 # download installer to /tmp
