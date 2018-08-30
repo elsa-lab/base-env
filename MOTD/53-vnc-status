@@ -1,0 +1,39 @@
+#!/bin/bash
+
+PID_ARG="%-8s"
+USER_ARG="%-10s"
+CPU_ARG="%-8s"
+MEM_ARG="%-8s"
+TIME_ARG="%-16s"
+DISPLAY_ARG="%-7s"
+
+UNDERLINE="\033[4m"
+RESET="\033[0m"
+
+NUM_LINE=$(ps -eo pid,user,%cpu,%mem,etime,cmd | grep -e 'vnc.*desktop' | grep -v grep | wc -l)
+
+if [ ${NUM_LINE} -gt 0 ]; then
+  printf "\n"
+  printf "  "
+  printf "${UNDERLINE}"
+  printf "${PID_ARG}" "VNCPID"
+  printf "${USER_ARG}" "User"
+  printf "${DISPLAY_ARG}" "#Disp"
+  printf "${CPU_ARG}" "CPU"
+  printf "${MEM_ARG}" "MEM"
+  printf "${TIME_ARG}" "Elapsed Time"
+  printf "${RESET}"
+  printf "\n"
+
+  ps -eo pid,user,%cpu,%mem,etime,cmd | grep -e 'vnc.*desktop' | grep -v grep |
+    while read -a line; do
+      printf "  "
+      printf "${PID_ARG}" "${line[0]}"
+      printf "${USER_ARG}" "${line[1]}"
+      printf "${DISPLAY_ARG}" "${line[6]:1}"
+      printf "${CPU_ARG}" "${line[2]}%"
+      printf "${MEM_ARG}" "${line[3]}%"
+      printf "${TIME_ARG}" "${line[4]//-/d }"
+      printf "\n" 
+    done
+fi

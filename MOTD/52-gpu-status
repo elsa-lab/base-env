@@ -1,0 +1,47 @@
+#!/bin/bash
+
+SMI=nvidia-smi
+Q_GPU=uuid,index,name,utilization.gpu,fan.speed,memory.used,memory.free
+Q_COMPUTE_APPS=gpu_uuid
+FORMAT=csv,noheader,nounits
+GPU_INFO=$(${SMI} --format=${FORMAT} --query-gpu=${Q_GPU})
+PROCESSES=$(${SMI} --format=${FORMAT} --query-compute-apps=${Q_COMPUTE_APPS})
+
+GPU_ARG="%-5s"
+NAME_ARG="%-21s"
+UTIL_ARG="%-6s"
+MEM_ARG="%-9s"
+NUM_PROC_ARG="%-7s"
+
+UNDERLINE="\033[4m"
+GREEN="\033[32m"
+RED="\033[31m"
+RESET="\033[0m"
+
+printf "\n"
+printf "  "
+printf "${UNDERLINE}"
+printf "${GPU_ARG}" "GPU"
+printf "${NAME_ARG}" "Name"
+printf "${UTIL_ARG}" "Util"
+printf "${MEM_ARG}" "Used"
+printf "${MEM_ARG}" "Free"
+printf "${NUM_PROC_ARG}" "#Proc"
+printf "${RESET}"
+printf "\n"
+
+echo "${GPU_INFO}" | while IFS=',' read -a line; do
+  printf "  "
+  printf "${GPU_ARG}" "${line[1]}"
+  printf "${NAME_ARG}" "${line[2]:1}"
+  if [ "${line[3]}" -gt 85 ]; then
+    printf "${RED}"
+  else
+    printf "${GREEN}"
+  fi
+  printf "${UTIL_ARG}${RESET}" "${line[3]:1}%"
+  printf "${MEM_ARG}" "${line[5]:1}M"
+  printf "${MEM_ARG}" "${line[6]:1}M"
+  uuid="${line[0]}"
+  echo "${PROCESSES}" | grep "${uuid}" | wc -l
+done

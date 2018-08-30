@@ -1,0 +1,61 @@
+#!/bin/bash
+
+OS=$(uname)
+
+IP_PREFIX="140.114"
+SSH_PORT=22
+INFO_PORT=63146
+
+HOSTNAME_ARG="%-12s"
+STATUS_ARG="%-9s"
+LOAD_ARG="%-8s"
+MEM_ARG="%-8s"
+USER_ARG="%-9s"
+TIME_ARG="%-20s"
+
+YELLOW="\033[0;33m"
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+UNDERLINE="\033[4m"
+RESET="\033[0m"
+
+printf "\n"
+printf "  "
+printf "${UNDERLINE}"
+printf "${HOSTNAME_ARG}" "Hostname"
+printf "${STATUS_ARG}" "Status" 
+printf "${LOAD_ARG}" "Load"
+printf "${MEM_ARG}" "MEM" 
+printf "${TIME_ARG}" "Timestamp"
+printf "${RESET}"
+printf "\n"
+for HOSTNAME in $(grep "${IP_PREFIX}" /etc/hosts | grep -v ${HOSTNAME} | sed 's/[0-9.]//g;'); do
+  printf "  "
+  printf "${HOSTNAME_ARG}" "${HOSTNAME}"
+  nc -z -w 1 "${HOSTNAME}" "${SSH_PORT}" &> /dev/null
+  if [ $? -eq 0 ]; then
+    printf "${GREEN}${STATUS_ARG}${RESET}" "ONLINE"
+  else
+    printf "${RED}${STATUS_ARG}${RESET}" "OFFLINE"
+  fi
+  read -a array <<< $(nc -w 1 "${HOSTNAME}" "${INFO_PORT}")
+  if [ ${#array[@]} -ne 0 ]; then
+    if [ ${array[0]%%.*} -ge ${array[4]} ]; then
+      printf "${RED}"
+    elif [ ${array[0]%%.*} -ge $(( array[4] / 2 )) ]; then
+      printf "${YELLOW}"
+    fi
+    printf "${LOAD_ARG}${RESET}" "${array[0]}"
+    printf "${MEM_ARG}" "${array[1]}"
+    if [ $OS == "Linux" ]; then
+      printf "${TIME_ARG}" "$(date --date=@${array[5]} +"%b %d %r")"
+    elif [ $OS == "Darwin" ]; then
+      printf "${TIME_ARG}" "$(date -r ${array[5]} +"%b %d %r")"
+    fi
+  else
+    printf "${LOAD_ARG}" "N/A"
+    printf "${MEM_ARG}" "N/A"
+    printf "${TIME_ARG}" "N/A"
+  fi
+  printf "\n"
+done

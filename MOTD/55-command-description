@@ -1,0 +1,39 @@
+#!/bin/bash
+
+COMMAND_VAR="%-12s"
+STATUS_VAR="%-13s"
+DESCRIPTION_VAR="%-32s"
+
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+UNDERLINE="\033[4m"
+RESET="\033[0m"
+
+print_com_des () {
+  COMMAND="$1"
+  DESCRIPTION="$2"
+  printf "  "
+  printf "${COMMAND_VAR}" "${COMMAND}"
+  type "${COMMAND}" &> /dev/null
+  if [ $? -eq 0 ]; then
+    printf "${GREEN}${STATUS_VAR}${RESET}" "Available"
+  else
+    printf "${RED}${STATUS_VAR}${RESET}" "Unavailable"
+  fi
+  printf "${DESCRIPTION_VAR}" "${DESCRIPTION}"
+  printf "\n"
+}
+
+printf "\n"
+printf "  "
+printf "${UNDERLINE}"
+printf "${COMMAND_VAR}" "Command"
+printf "${STATUS_VAR}" "Status"
+printf "${DESCRIPTION_VAR}" "Description"
+printf "${RESET}"
+printf "\n"
+print_com_des "hdd-status" "Report mounted disks' usage"
+print_com_des "gpu-status" "Report NVIDIA GPUs' usage"
+print_com_des "vnc-status" "Report VNC server's processes"
+print_com_des "hst-status" "Report known hosts' usage"
+print_com_des "sshfs" "Filesystem client based on ssh"

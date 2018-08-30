@@ -1,0 +1,50 @@
+#!/bin/bash
+
+TARGET_ARG="%-12s"
+SIZE_ARG="%-7s"
+AVAIL_ARG="%-7s"
+PCENT_ARG="%-6s"
+BAR_ARG="%-25s"
+LEN_ARG=21
+
+YELLOW="\033[0;33m"
+RED="\033[31m"
+UNDERLINE="\033[4m"
+RESET="\033[0m"
+
+printf "\n"
+printf "  "
+printf "${UNDERLINE}"
+printf "${TARGET_ARG}" "Mounted on"
+printf "${SIZE_ARG}" "Size"
+printf "${AVAIL_ARG}" "Avail"
+printf "${PCENT_ARG}" "Use"
+printf "${BAR_ARG}" " "
+printf "${RESET}"
+printf "\n"
+
+df -h --output=target,size,avail,pcent,source  |
+  tail -n +2 |     # remove header
+  grep -v tmp |    # remove tmpfs
+  grep -v udev |   # remove udev
+  grep -v : |      # remove sshfs
+  grep -v docker | # remove docker
+  while read -a line; do
+    printf "  "
+    if [ "${line[3]%?}" -gt 80 ]; then
+      printf "${RED}"
+    elif [ "${line[3]%?}" -gt 60 ]; then
+      printf "${YELLOW}"
+    fi
+    printf "${TARGET_ARG}" "${line[0]}"
+    printf "${SIZE_ARG}" "${line[1]}"
+    printf "${AVAIL_ARG}" "${line[2]}"
+    printf "${PCENT_ARG}" "${line[3]}"
+    printf "["
+      i=0; j=$(( ${line[3]%?} * ${LEN_ARG} / 100 ))
+      for((;i < $j ;i++));do printf "#";done;
+      for((;i < ${LEN_ARG} ;i++));do printf ".";done;
+    printf "]"
+    printf "${RESET}"
+    printf "\n"
+  done

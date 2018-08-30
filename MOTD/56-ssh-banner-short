@@ -1,0 +1,36 @@
+#!/bin/bash
+
+TIME_ARG="%-10s"
+EVENT_ARG="%-17s"
+ID_ARG="%-13s"
+IP_ARG="%-17s"
+
+UNDERLINE="\033[4m"
+RESET="\033[0m"
+
+NUM_LINE=$(sed '$d' /etc/ssh/sshd_banner | tail -n +2 | wc -l)
+
+if [ ${NUM_LINE} -gt 0 ]; then
+  printf "\n"
+  printf "  "
+  printf "${UNDERLINE}"
+  printf "${TIME_ARG}" "Time"
+  printf "${EVENT_ARG}" "Event"
+  printf "${ID_ARG}" "UserID"
+  printf "${IP_ARG}" "SourceIP"
+  printf "${RESET}"
+  printf "\n"
+
+  sed '$d' /etc/ssh/sshd_banner | tail -n +2 | while read -a line; do
+    printf "  "
+    printf "${TIME_ARG}" "${line[1]}"
+    printf "${EVENT_ARG}" "${line[3]}"
+    printf "${ID_ARG}" "${line[4]}"
+    printf "${IP_ARG}" "${line[5]}"
+    printf "\n"
+  done | tail -n5
+
+  if [ ${NUM_LINE} -gt 5 ]; then
+    printf "  $((${NUM_LINE} - 5)) more line(s)...\n"
+  fi
+fi
