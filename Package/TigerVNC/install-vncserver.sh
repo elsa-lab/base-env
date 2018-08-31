@@ -13,7 +13,7 @@ sudo -v
 
 # install TigerVNC
 sudo dpkg -i "${VNC_INSTALLER}"
-sudo apt-get install -f
+sudo apt-get install -f -y
 
 # adjust default xstartup
 curl -L https://gist.github.com/yu020009/363736a0368ee088b496fa90eac59492/raw/ | \
