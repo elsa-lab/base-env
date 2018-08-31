@@ -10,3 +10,6 @@ sudo -v
 # uninstall motds
 sudo rm -f ${MOTD_PATH}/5* ${MOTD_PATH}/6*
 sudo rm -f ${BIN_PATH}/*-status
+
+# enable origin info
+sudo chmod +x /etc/update-motd.d/*

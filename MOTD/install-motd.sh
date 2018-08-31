@@ -30,3 +30,7 @@ if [ $? -eq 0 ]; then
   sudo cp motds/53-vnc-status "${MOTD_PATH}/"
   sudo ln -s /etc/update-motd.d/53-vnc-status "${BIN_PATH}/vnc-status"
 fi
+
+# disable useless info
+sudo chmod -x /etc/update-motd.d/1*
+sudo chmod -x /etc/update-motd.d/9* 
