@@ -16,6 +16,7 @@ sudo apt-get install -y \
   fail2ban \
   sshfs \
   vim zip \
+  ffmpeg \
   python-virtualenv \
   python-pip python-dev \
   python3-pip python3-dev
