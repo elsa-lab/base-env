@@ -1,6 +1,13 @@
 #!/bin/sh
 
 WORKING_DIR=$(pwd)
+ARCHI=$(uname -m)
+
+# Check Architecture
+if [ $(uname -m) != "x86_64" ]; then
+  echo This Installation Flow only works on 64bit OS
+  exit 1
+fi
 
 # Check Boot Option
 if ! grep -q 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset"' /etc/default/grub; then
