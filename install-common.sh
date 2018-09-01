@@ -9,6 +9,12 @@ if [ $(uname -m) != "x86_64" ]; then
   exit 1
 fi
 
+# Check NVIDIA GPU
+if ! lspci | grep -q 'NVIDIA'; then
+  echo This Installation Flow only works when NVIDIA GPU installed
+  exit 1
+fi
+
 # Check Boot Option
 if ! grep -q 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset"' /etc/default/grub; then
   echo Please run ./Package/NVIDIA/add-boot-option.sh then reboot
