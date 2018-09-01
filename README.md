@@ -1,6 +1,6 @@
 # Part I: Packages
 
-![](PNG/Installation_Guide.png)
+![](Image/Installation_Guide.png)
 
 # Part II: Services
 
@@ -14,4 +14,4 @@ for more details please link to the [repo](https://github.com/BassyKuo/hosts-mon
 
 # Part III: MOTDs
 
-![](PNG/Sample_MOTD.png)
+![](Image/Sample_MOTD.png)
