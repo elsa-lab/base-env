@@ -31,9 +31,10 @@ cd ${WORKING_DIR}/Package
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
-./NVIDIA/install-cuda9-cudnn7.sh
+./NVIDIA/install-cuda8-cudnn.sh
+./NVIDIA/install-cuda9-cudnn.sh
 ./NVIDIA/install-nv-docker.sh
-./NVIDIA/add-env-settings.sh
+./NVIDIA/add-cuda9-env-settings.sh
 
 ## Package: TigerVNC
 ./TigerVNC/install-xfce4.sh
