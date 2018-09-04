@@ -9,7 +9,4 @@ sudo sed -i \
   /etc/default/grub
 sudo update-grub
 
-# upgrade kernel
-sudo apt-get install -y --install-recommends linux-generic-hwe-16.04
-
 echo "Please Reboot Before Driver Installation"
