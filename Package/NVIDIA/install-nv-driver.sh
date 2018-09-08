@@ -10,7 +10,7 @@ sudo -v
 
 # install dkms first
 sudo apt update
-sudo apt install -y dkms
+sudo apt install -y --reinstall dkms
 
 # download installer to /tmp
 cd /tmp

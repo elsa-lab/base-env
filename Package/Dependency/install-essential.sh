@@ -5,7 +5,7 @@ sudo -v
 
 # install default packages
 sudo apt-get update
-sudo apt-get install -y \
+sudo apt-get install -y --reinstall \
   smartmontools \
   build-essential \
   git curl wget \
