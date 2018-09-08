@@ -16,7 +16,7 @@ if ! lspci | grep -q 'NVIDIA'; then
 fi
 
 # Check Boot Option
-if ! grep -q 'GRUB_CMDLINE_LINUX_DEFAULT="nomodeset"' /etc/default/grub; then
+if ! grep -q 'GRUB_CMDLINE_LINUX_DEFAULT.*nomodeset.*' /etc/default/grub; then
   echo Please run ./Package/NVIDIA/add-boot-option.sh then reboot
   exit 1
 fi
