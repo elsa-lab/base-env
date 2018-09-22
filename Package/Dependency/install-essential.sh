@@ -6,15 +6,14 @@ sudo -v
 # install default packages
 sudo apt-get update
 sudo apt-get install -y --reinstall \
-  smartmontools \
+  smartmontools dkms \
+  htop iotop smem \
   build-essential \
-  git curl wget \
-  htop iotop \
+  curl wget \
   landscape-common \
   ppa-purge \
   screen tmux \
-  fail2ban \
-  sshfs \
+  fail2ban sshfs \
   vim zip \
   ffmpeg \
   python-virtualenv \
