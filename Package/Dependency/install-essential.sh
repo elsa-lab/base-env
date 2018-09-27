@@ -12,6 +12,7 @@ sudo apt-get install -y --reinstall \
   curl wget \
   landscape-common \
   ppa-purge \
+  trash-cli \
   screen tmux \
   fail2ban sshfs \
   vim zip \
