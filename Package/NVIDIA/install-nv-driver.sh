@@ -27,6 +27,9 @@ sudo ./"${DRIVER_INSTALLER}" \
 # enable persistence mode
 sudo /usr/bin/nvidia-smi -pm 1
 
+# enable persistence-mode on start up
+sudo sed -i -e '$i /usr/bin/nvidia-smi -pm 1\n' /etc/rc.local
+
 # restart lightdm
 if service --status-all | grep -Fq 'lightdm'; then
   sudo service lightdm restart

@@ -11,7 +11,4 @@ export PATH="${CUDA_HOME}/bin:${PATH}"
 export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64"
 export CUDA_VISIBLE_DEVICES="0"
 ########## CUDA SECTION END ##########
-' | sudo tee --append /etc/bash.bashrc
-
-# enable persistence-mode on start up
-sudo sed -i -e '$i /usr/bin/nvidia-smi -pm 1\n' /etc/rc.local
+' | sudo tee /etc/profile.d/cuda.sh
