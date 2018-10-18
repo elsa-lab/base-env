@@ -31,7 +31,6 @@ cd ${WORKING_DIR}/Package
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
-./NVIDIA/install-nv-docker.sh
 ./NVIDIA/install-cuda-cudnn.sh
 ./NVIDIA/add-cuda9-env.sh
 
