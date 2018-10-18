@@ -4,5 +4,5 @@
 sudo -v
 
 # clean .vnc/passwd constantly
-echo rm -f \~/.vnc/passwd | sudo tee /etc/profile.d/vnc.sh
+echo rm -f \~/.vnc/passwd | sudo tee -a /etc/bash.bashrc
 
