@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 WORKING_DIR=$(pwd)
 ARCHI=$(uname -m)
@@ -28,6 +28,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-essential.sh
 ./Dependency/install-opencv.sh
 ./Dependency/install-docker.sh
+./Dependency/add-logger-env.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
