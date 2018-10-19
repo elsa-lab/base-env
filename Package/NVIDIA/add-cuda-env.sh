@@ -12,4 +12,5 @@ export CUDA_VISIBLE_DEVICES="0"
 ' | sudo tee /etc/profile.d/cuda.sh
 
 # default use cuda-9.0
+ln -s /usr/local/cuda-9.0 ~/.cuda
 sudo ln -s /usr/local/cuda-9.0 /etc/skel/.cuda
