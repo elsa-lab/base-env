@@ -28,7 +28,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-essential.sh
 ./Dependency/install-opencv.sh
 ./Dependency/install-docker.sh
-./Dependency/add-logger-env.sh
+./Dependency/install-snoopy.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
