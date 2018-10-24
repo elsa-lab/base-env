@@ -5,7 +5,7 @@ sudo -v
 
 # install default packages
 sudo apt-get update
-sudo apt-get install -y --reinstall \
+sudo apt-get install -y \
   smartmontools dkms \
   htop iotop smem \
   build-essential \
@@ -18,5 +18,5 @@ sudo apt-get install -y --reinstall \
   vim zip \
   ffmpeg \
   python-virtualenv \
-  python-pip python-dev \
-  python3-pip python3-dev
+  python-dev \
+  python3-dev
