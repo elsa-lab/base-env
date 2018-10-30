@@ -18,5 +18,6 @@ sudo apt-get install -y \
   vim zip \
   ffmpeg \
   python-virtualenv \
+  python-opencv \
   python-dev \
   python3-dev
