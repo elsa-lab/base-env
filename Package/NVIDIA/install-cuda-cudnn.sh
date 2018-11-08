@@ -55,5 +55,17 @@ sudo tar --no-same-owner -xzf "${CUDA9_CUDNN7_TGZ}" -C /usr/local --wildcards 'c
 # remove default symbloic link
 sudo rm -f /usr/local/cuda
 
+# some env variables for bash
+echo '
+export CUDA_HOME="${HOME}/.cuda"
+export PATH="${CUDA_HOME}/bin:${PATH}"
+export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64"
+export CUDA_VISIBLE_DEVICES="0"
+' | sudo tee /etc/profile.d/cuda.sh
+
+# default use cuda-9.0
+ln -n -f -s /usr/local/cuda-9.0 ~/.cuda
+sudo ln -n -f -s /usr/local/cuda-9.0 /etc/skel/.cuda
+
 # clean up
 cd && rm -rf "${TEMP_PATH}"
