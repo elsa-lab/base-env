@@ -17,19 +17,23 @@ CUDA8_CUDNN6_TGZ="cudnn-8.0-linux-x64-v6.0.tgz"
 CUDA8_CUDNN7_TGZ="cudnn-8.0-linux-x64-v7.1.tgz"
 CUDA9_CUDNN7_TGZ="cudnn-9.0-linux-x64-v7.2.1.38.tgz"
 
-# download cuda installer to /tmp
-cd /tmp
+TEMP_PATH="/tmp/cuda-$(date | md5sum | awk '{print $1}')"
+
+# change directory to TEMP_PATH
+mkdir -p "${TEMP_PATH}"
+cd "${TEMP_PATH}"
+
+# download cuda installer
 curl -L "${CUDA8_LINK}" -o "${CUDA8_INSTALLER}"
 curl -L "${CUDA9_LINK}" -o "${CUDA9_INSTALLER}"
 chmod +x "${CUDA8_INSTALLER}"
 chmod +x "${CUDA9_INSTALLER}"
 
-# download cudnn tgz to /tmp
-cd /tmp
-curl -L "${CUDA8_CUDNN5_LINK}" -O
-curl -L "${CUDA8_CUDNN6_LINK}" -O
-curl -L "${CUDA8_CUDNN7_LINK}" -O
-curl -L "${CUDA9_CUDNN7_LINK}" -O
+# download cudnn tgz
+curl -LO "${CUDA8_CUDNN5_LINK}"
+curl -LO "${CUDA8_CUDNN6_LINK}"
+curl -LO "${CUDA8_CUDNN7_LINK}"
+curl -LO "${CUDA9_CUDNN7_LINK}"
 
 # extends the sudo timeout for another 15 minutes
 sudo -v
@@ -48,13 +52,8 @@ sudo ./"${CUDA9_INSTALLER}" --silent --toolkit --verbose
 # install cudnn library to cuda9 home
 sudo tar --no-same-owner -xzf "${CUDA9_CUDNN7_TGZ}" -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
 
-# remove symbloic link
+# remove default symbloic link
 sudo rm -f /usr/local/cuda
 
 # clean up
-rm -f "${CUDA8_INSTALLER}"
-rm -f "${CUDA9_INSTALLER}"
-rm -f "${CUDA8_CUDNN5_TGZ}"
-rm -f "${CUDA8_CUDNN6_TGZ}"
-rm -f "${CUDA8_CUDNN7_TGZ}"
-rm -f "${CUDA9_CUDNN7_TGZ}"
+cd && rm -rf "${TEMP_PATH}"
