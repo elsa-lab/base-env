@@ -28,6 +28,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-essential.sh
 ./Dependency/install-snoopy.sh
 ./Dependency/install-docker.sh
+./Dependency/install-mujoco.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
