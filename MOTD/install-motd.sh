@@ -31,10 +31,6 @@ if [ $? -eq 0 ]; then
   sudo ln -s /etc/update-motd.d/53-vnc-status "${BIN_PATH}/vnc-status"
 fi
 
-# enable useful info
-sudo chmod go+rx /etc/update-motd.d/5*
-sudo chmod go+rx /etc/update-motd.d/6*
-
 # disable useless info
 sudo chmod -x /etc/update-motd.d/1*
 sudo chmod -x /etc/update-motd.d/9* 
