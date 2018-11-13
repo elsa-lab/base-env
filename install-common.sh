@@ -21,6 +21,11 @@ if ! grep -q 'GRUB_CMDLINE_LINUX_DEFAULT.*nomodeset.*' /etc/default/grub; then
   exit 1
 fi
 
+# Set default umask
+sudo -v
+sudo sed -i "s/UMASK.*022/UMASK 077/" /etc/login.defs
+chmod go-rwx ${HOME}
+
 # Part I: Package
 cd ${WORKING_DIR}/Package
 
