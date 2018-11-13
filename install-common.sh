@@ -23,6 +23,7 @@ fi
 
 # Set default umask
 sudo -v
+sudo sed -i "s/DIR_MODE=0755/DIR_MODE=0700/" /etc/adduser.conf
 sudo sed -i "s/UMASK.*022/UMASK 077/" /etc/login.defs
 chmod -R go-rwx ${HOME}
 
