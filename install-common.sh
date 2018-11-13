@@ -24,7 +24,7 @@ fi
 # Set default umask
 sudo -v
 sudo sed -i "s/UMASK.*022/UMASK 077/" /etc/login.defs
-chmod go-rwx ${HOME}
+chmod -R go-rwx ${HOME}
 
 # Part I: Package
 cd ${WORKING_DIR}/Package
