@@ -14,4 +14,4 @@ sudo apt-get purge -y xscreensaver
 sudo apt-get purge -y xdg-user-dirs
 
 # clean up
-sudo apt autoremove -y --purge
+sudo apt-get autoremove -y --purge
