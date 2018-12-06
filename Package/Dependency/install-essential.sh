@@ -16,8 +16,12 @@ sudo apt-get install -y \
   screen tmux \
   fail2ban sshfs \
   vim zip \
-  ffmpeg libopenmpi-dev \
+  ffmpeg \
+  libopenmpi-dev \
+  libopenblas-dev \
   python-virtualenv \
   python-opencv \
   python-dev \
   python3-dev
+sudo apt-get install -y --no-install-recommends libboost-all-dev
+
