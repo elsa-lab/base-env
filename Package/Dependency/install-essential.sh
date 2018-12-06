@@ -23,5 +23,9 @@ sudo apt-get install -y \
   python-opencv \
   python-dev \
   python3-dev
+
 sudo apt-get install -y --no-install-recommends libboost-all-dev
 
+sudo add-apt-repository -y ppa:deadsnakes/ppa
+sudo apt-get update
+sudo apt-get install -y python3.6
