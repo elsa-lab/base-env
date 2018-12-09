@@ -16,7 +16,7 @@ sudo apt-get install -y \
   screen tmux \
   fail2ban sshfs \
   vim zip \
-  ffmpeg \
+  ffmpeg libosmesa6-dev \
   libopenmpi-dev \
   libopenblas-dev \
   python-virtualenv \
