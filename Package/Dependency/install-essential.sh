@@ -9,12 +9,14 @@ sudo apt-get install -y \
   smartmontools dkms \
   htop iotop smem \
   build-essential \
-  curl wget \
+  wget \
   landscape-common \
   ppa-purge \
   trash-cli \
   screen tmux \
-  fail2ban sshfs \
+  fail2ban \
+  snoopy \
+  sshfs \
   vim zip \
   ffmpeg \
   libosmesa6-dev \
