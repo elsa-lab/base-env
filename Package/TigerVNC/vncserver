@@ -63,7 +63,7 @@ $defaultXStartup
     = ("#!/bin/sh\n\n".
        "unset SESSION_MANAGER\n".
        "unset DBUS_SESSION_BUS_ADDRESS\n".
-       "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin startxfce4 &\n");
+       "PATH=/usr/bin:/bin startxfce4 &\n");
 
 $defaultConfig
     = ("## Supported server options to pass to vncserver upon invocation can be listed\n".
