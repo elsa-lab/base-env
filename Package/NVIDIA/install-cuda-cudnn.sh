@@ -57,6 +57,7 @@ sudo rm -f /usr/local/cuda
 
 # some env variables for bash
 echo '
+export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_HOME="${HOME}/.cuda"
 export PATH="${CUDA_HOME}/bin:${PATH}"
 export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64"
