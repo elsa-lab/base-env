@@ -30,8 +30,9 @@ sudo apt-get install -y --no-install-recommends libboost-all-dev
 
 sudo add-apt-repository -y ppa:deadsnakes/ppa
 sudo apt-get update
-sudo apt-get install -y python3.6 python3.6-dev
+sudo apt-get install -y python3.6-dev python3.7-dev
 
+# install PatchELF
 sudo add-apt-repository -y ppa:jamesh/snap-support
 sudo apt-get update
 sudo apt-get install -y patchelf
