@@ -6,3 +6,5 @@ echo Random Generated VNC Password: ${PW}
 
 [ ! -d ${HOME}/.vnc ] && mkdir -p ${HOME}/.vnc
 echo ${PW} | /usr/bin/tigervncpasswd -f > ${HOME}/.vnc/passwd
+
+chmod 600 ${HOME}/.vnc/passwd
