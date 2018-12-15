@@ -1,0 +1,8 @@
+#!/bin/sh
+
+PW=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+
+echo Random Generated VNC Password: ${PW}
+
+[ ! -d ${HOME}/.vnc ] && mkdir -p ${HOME}/.vnc
+echo ${PW} | /usr/bin/tigervncpasswd -f > ${HOME}/.vnc/passwd

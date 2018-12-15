@@ -42,7 +42,8 @@ cd ${WORKING_DIR}/Package
 ## Package: TigerVNC
 ./TigerVNC/install-xfce4.sh
 ./TigerVNC/install-vncserver.sh
-sudo cp ./TigerVNC/vncserver /usr/bin/vncserver
+sudo cp ./TigerVNC/scripts/vncserver  /usr/bin/vncserver
+sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
 
 # Part II: Service
 cd ${WORKING_DIR}/Service
