@@ -1,22 +1,20 @@
 #!/bin/sh
 
-# useful variables
-VNC_INSTALLER="tigervncserver_1.8.0-1ubuntu1_amd64.deb"
-VNC_LINK="https://bintray.com/tigervnc/stable/download_file?file_path=ubuntu-16.04LTS%2Famd64%2Ftigervncserver_1.8.0-1ubuntu1_amd64.deb"
-
-# download vnc installer to /tmp
-cd /tmp
-curl -L "${VNC_LINK}" -o "${VNC_INSTALLER}"
-
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
-# install TigerVNC
-sudo dpkg -i "${VNC_INSTALLER}"
-sudo apt-get install -f -y
+# install Xfce desktop environment
+sudo apt-get update
+sudo apt-get install -y xfce4 xfce4-goodies
 
-# clean .vnc/passwd constantly
-echo rm -f \~/.vnc/passwd | sudo tee -a /etc/bash.bashrc
+# install TigerVNC
+sudo apt-get install -v tigervnc-standalone-server tigervnc-xorg-extension
+
+# remove XScreenSaver, due to there is no real screen
+sudo apt-get purge -y xscreensaver
+
+# remove xdg-user-dirs, since we dont need those default dirs
+sudo apt-get purge -y xdg-user-dirs
 
 # clean up
-rm -f "${VNC_INSTALLER}"
+sudo apt-get autoremove -y --purge

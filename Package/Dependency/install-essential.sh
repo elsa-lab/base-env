@@ -21,6 +21,7 @@ sudo apt-get install -y \
   libgl1-mesa-dev \
   libopenmpi-dev \
   libopenblas-dev \
+  patchelf \
   python-virtualenv \
   python-opencv \
   python-tk \
@@ -29,13 +30,3 @@ sudo apt-get install -y \
   python3-dev
 
 sudo apt-get install -y --no-install-recommends libboost-all-dev
-
-sudo add-apt-repository -y ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install -y python3.6-dev python3.7-dev
-sudo apt-get install -y python3.6-tk python3.7-tk
-
-# install PatchELF
-sudo add-apt-repository -y ppa:jamesh/snap-support
-sudo apt-get update
-sudo apt-get install -y patchelf
