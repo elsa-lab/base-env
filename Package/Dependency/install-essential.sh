@@ -30,3 +30,8 @@ sudo apt-get install -y \
   python3-dev
 
 sudo apt-get install -y --no-install-recommends libboost-all-dev
+
+# install Snoopy
+sudo apt-get install -y debconf-utils
+echo snoopy snoopy/install-ld-preload boolean true | sudo debconf-set-selections
+sudo apt-get install -y snoopy
