@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get install -y xfce4 xfce4-goodies
 
 # install TigerVNC
-sudo apt-get install -v tigervnc-standalone-server tigervnc-xorg-extension
+sudo apt-get install -y tigervnc-standalone-server tigervnc-xorg-extension
 
 # remove XScreenSaver, due to there is no real screen
 sudo apt-get purge -y xscreensaver
