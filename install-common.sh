@@ -40,7 +40,6 @@ cd ${WORKING_DIR}/Package
 ./NVIDIA/install-cuda-cudnn.sh
 
 ## Package: TigerVNC
-./TigerVNC/install-xfce4.sh
 ./TigerVNC/install-vncserver.sh
 sudo cp ./TigerVNC/scripts/vncserver  /usr/bin/vncserver
 sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
