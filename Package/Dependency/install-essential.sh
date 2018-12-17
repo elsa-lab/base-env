@@ -9,6 +9,7 @@ sudo apt-get install -y \
   smartmontools dkms \
   htop iotop smem \
   build-essential \
+  gcc-5 g++5 \
   curl wget \
   landscape-common \
   ppa-purge \
