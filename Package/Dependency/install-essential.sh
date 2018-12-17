@@ -28,8 +28,6 @@ sudo apt-get install -y \
   python3-tk \
   python3-dev
 
-sudo apt-get install -y --no-install-recommends libboost-all-dev
-
 # install PatchELF
 sudo add-apt-repository -y ppa:jamesh/snap-support
 sudo apt-get update
