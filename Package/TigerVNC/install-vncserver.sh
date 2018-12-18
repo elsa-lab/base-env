@@ -16,5 +16,8 @@ sudo apt-get purge -y xscreensaver
 # remove xdg-user-dirs, since we dont need those default dirs
 sudo apt-get purge -y xdg-user-dirs
 
+# clean .vnc/passwd constantly
+echo rm -f \~/.vnc/passwd | sudo tee /etc/profile.d/vnc.sh
+
 # clean up
 sudo apt-get autoremove -y --purge
