@@ -33,6 +33,9 @@ for z in *.zip; do
   rm "${z}"
 done
 
+# rename mujoco200
+mv mujoco200_linux mujoco200
+
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
