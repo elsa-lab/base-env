@@ -9,4 +9,5 @@ sudo sed -i \
   /etc/default/grub
 sudo update-grub
 
-echo "Please Reboot Before Driver Installation"
+echo -e "\e[5m\e[1mPlease reboot before NVIDIA driver installation\e[0m"
+echo -e "P.S. Please add \033[0;32mpcie_aspm=off\033[0m manually if using \033[0;31mThreadripper\033[0m"
