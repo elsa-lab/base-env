@@ -31,6 +31,7 @@ cd ${WORKING_DIR}/Package
 
 ## Package: Dependency
 ./Dependency/install-essential.sh
+./Dependency/install-bazel.sh
 ./Dependency/install-docker.sh
 ./Dependency/install-mujoco.sh
 
