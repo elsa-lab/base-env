@@ -27,11 +27,6 @@ sudo apt-get install -y \
   python3-tk \
   python3-dev
 
-# install PatchELF
-sudo add-apt-repository -y ppa:jamesh/snap-support
-sudo apt-get update
-sudo apt-get install -y patchelf
-
 # install Snoopy
 sudo apt-get install -y debconf-utils
 echo snoopy snoopy/install-ld-preload boolean true | sudo debconf-set-selections
