@@ -25,7 +25,7 @@ printf "${UNDERLINE}"
 printf "${HOSTNAME_ARG}" "Hostname"
 printf "${STATUS_ARG}" "Status" 
 printf "${LOAD_ARG}" "Load"
-printf "${MEM_ARG}" "MEM" 
+printf "${MEM_ARG}" "Memory" 
 printf "${TIME_ARG}" "Timestamp"
 printf "${RESET}"
 printf "\n"
@@ -37,12 +37,13 @@ for HOSTNAME in $(grep "${IP_PREFIX}" /etc/hosts | grep -v ${HOSTNAME} | sed 's/
     printf "${GREEN}${STATUS_ARG}${RESET}" "ONLINE"
     read -a array <<< $(nc -w 1 "${HOSTNAME}" "${INFO_PORT}")
     if [ ${#array[@]} -ne 0 ]; then
+      LOAD=$(python3 -c "print('%3.1f%%' % (${array[0]} / ${array[4]}.0 * 100.0))")
       if [ ${array[0]%%.*} -ge ${array[4]} ]; then
         printf "${RED}"
       elif [ ${array[0]%%.*} -ge $(( array[4] / 2 )) ]; then
         printf "${YELLOW}"
       fi
-      printf "${LOAD_ARG}${RESET}" "${array[0]}"
+      printf "${LOAD_ARG}${RESET}" "${LOAD}"
       printf "${MEM_ARG}" "${array[1]}"
       if [ $OS == "Linux" ]; then
         printf "${TIME_ARG}" "$(date --date=@${array[5]} +"%b %d %r")"
