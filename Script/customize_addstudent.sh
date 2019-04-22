@@ -5,6 +5,7 @@ GROUP="student"
 PASSWD="elsalab"
 
 if [ "${STUDENT}" = "" ]; then
+  echo "Usage: $0 <student id>"
   exit 1
 fi
 
@@ -20,5 +21,7 @@ sudo adduser ${STUDENT} \
   --disabled-password
 echo "${STUDENT}:${PASSWD}" | sudo chpasswd
 sudo mkdir /warehouse/${STUDENT}
+sudo mkdir /home/${STUDENT}/Warehouse
 sudo chown ${STUDENT}:${GROUP} /warehouse/${STUDENT}
-sudo ln -s /warehouse/${STUDENT} /home/${STUDENT}/Warehouse
+sudo mount --bind /warehouse/${STUDENT} /home/${STUDENT}/Warehouse
+echo /home/${STUDENT}/Warehouse /warehouse/${STUDENT} none bind 0 0 >> /etc/fstab

@@ -5,6 +5,7 @@ GROUP="elsa-admin"
 PASSWD=$(date | md5sum | awk '{print $1}')
 
 if [ "${ADMIN}" = "" ]; then
+  echo "Usage: $0 <admin id>"
   exit 1
 fi
 
