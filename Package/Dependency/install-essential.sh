@@ -20,6 +20,7 @@ sudo apt-get install -y \
   libgl1-mesa-dev \
   libopenmpi-dev \
   libopenblas-dev \
+  zlib1g-dev \
   python-virtualenv \
   python-opencv \
   python-tk \
