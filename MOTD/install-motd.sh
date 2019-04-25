@@ -32,5 +32,6 @@ if [ $? -eq 0 ]; then
 fi
 
 # disable useless info
-sudo chmod -x /etc/update-motd.d/1*
-sudo chmod -x /etc/update-motd.d/9* 
+sudo chmod -x /etc/update-motd.d/10-help-text
+sudo chmod -x /etc/update-motd.d/90-updates-available
+sudo chmod -x /etc/update-motd.d/91-release-upgrade
