@@ -35,3 +35,4 @@ fi
 sudo chmod -x /etc/update-motd.d/10-help-text
 sudo chmod -x /etc/update-motd.d/90-updates-available
 sudo chmod -x /etc/update-motd.d/91-release-upgrade
+sudo chmod -x /etc/update-motd.d/97-overlayroot
