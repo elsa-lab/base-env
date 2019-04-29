@@ -22,4 +22,4 @@ sudo adduser ${ADMIN} \
 sudo usermod -aG sudo ${ADMIN}
 echo "${ADMIN}:${PASSWD}" | sudo chpasswd
 echo "Username: ${ADMIN}"
-echo "  Passwd: ${PASSWD}"
+echo "Password: ${PASSWD}"
