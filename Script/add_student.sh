@@ -24,4 +24,4 @@ sudo mkdir /warehouse/${STUDENT}
 sudo mkdir /home/${STUDENT}/Warehouse
 sudo chown ${STUDENT}:${GROUP} /warehouse/${STUDENT}
 sudo mount --bind /warehouse/${STUDENT} /home/${STUDENT}/Warehouse
-echo /home/${STUDENT}/Warehouse /warehouse/${STUDENT} none bind 0 0 >> /etc/fstab
+echo /home/${STUDENT}/Warehouse /warehouse/${STUDENT} none bind 0 0 | sudo tee -a /etc/fstab
