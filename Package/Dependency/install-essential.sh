@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get install -y \
   smartmontools dkms \
   htop iotop smem \
-  build-essential \
+  build-essential cmake \
   curl wget \
   landscape-common \
   ppa-purge \
@@ -21,6 +21,8 @@ sudo apt-get install -y \
   libopenmpi-dev \
   libopenblas-dev \
   zlib1g-dev \
+  libboost-all-dev \
+  libsdl2-dev \
   python-virtualenv \
   python-opencv \
   python-tk \
