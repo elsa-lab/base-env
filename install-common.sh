@@ -35,6 +35,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-docker.sh
 ./Dependency/install-mujoco.sh
 ./Dependency/install-python36.sh
+./Dependency/install-opencv.sh 
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
