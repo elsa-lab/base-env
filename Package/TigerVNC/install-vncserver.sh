@@ -16,7 +16,7 @@ sudo dpkg -i "${VNC_INSTALLER}"
 sudo apt-get install -f -y
 
 # clean .vnc/passwd constantly
-echo /bin/rm -f \~/.vnc/passwd | sudo tee /etc/profile.d/vnc.sh
+echo /usr/local/bin/vnc-pwdgen | sudo tee /etc/profile.d/vnc.sh
 
 # clean up
 rm -f "${VNC_INSTALLER}"
