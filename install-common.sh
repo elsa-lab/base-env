@@ -34,7 +34,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-bazel.sh
 ./Dependency/install-docker.sh
 ./Dependency/install-mujoco.sh
-./Dependency/install-python36.sh
+./Dependency/install-python36-37.sh 
 ./Dependency/install-opencv.sh 
 
 ## Package: NVIDIA
