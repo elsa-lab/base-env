@@ -10,7 +10,18 @@ test test
 
 Links
 -----
+* `GitHub repository`_
+* `PyPI package page`_
 
+.. toctree::
+   :caption: Introduction
+   :maxdepth: 2
+   :numbered:
+
+   introduction/introduction
+
+
+Indices and tables
 -----
 
 * :ref:`genindex`

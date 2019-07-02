@@ -18,7 +18,7 @@ Links
    :maxdepth: 2
    :numbered:
 
-   index
+   introduction/introduction
 
 
 Indices and tables
