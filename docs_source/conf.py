@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'training-noodles'
-copyright = '2019, Shawn Chang'
-author = 'Shawn Chang'
+project = 'base-env'
+copyright = '2019, Ken Lin'
+author = 'Ken Lin'
 
 
 # -- General configuration ---------------------------------------------------
