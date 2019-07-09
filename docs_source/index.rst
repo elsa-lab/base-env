@@ -6,12 +6,12 @@
 Welcome to elsa-env documentation!
 ============================================
 
-test test
+Elsa-env is designed for server installation. The installation package includes some essential dependencies, cuda, cudnn, VNC ... etc.
 
 Links
 -----
 * `GitHub repository`_
-* `PyPI package page`_
+* `Server note page`_
 
 .. toctree::
    :caption: Introduction
@@ -19,6 +19,18 @@ Links
    :numbered:
 
    introduction/introduction
+
+.. toctree::
+   :caption: Package
+   :maxdepth: 2
+   :numbered:
+
+   Package/Dependency
+   Package/NVIDIA
+   Package/VNC
+
+
+
 
 
 Indices and tables
@@ -28,4 +40,4 @@ Indices and tables
 * :ref:`search`
 
 .. _GitHub repository: https://github.com/elsa-lab/base-env
-.. _PyPI package page: https://pypi.org/project/base-env/
+.. _Server note page: https://pypi.org/project/base-env/
