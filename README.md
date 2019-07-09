@@ -1,3 +1,5 @@
+[![documentation_link](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://elsa-lab.github.io/base-env/)
+
 # Part I: Packages
 
 ![](Image/Installation_Guide.png)
