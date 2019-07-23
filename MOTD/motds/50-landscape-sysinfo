@@ -2,12 +2,13 @@
 cores=$(grep -c ^processor /proc/cpuinfo 2>/dev/null)
 [ "$cores" -eq "0" ] && cores=1
 threshold="${cores:-1}.0"
-load=$(/usr/bin/landscape-sysinfo --sysinfo-plugins=Load | awk '{print $3}')
-load_percent=$(python3 -c "print('%3.1f%%' % (${load} / ${threshold} * 100.0))")
-
-echo
-echo -n "  System information as of "
-/bin/date
-echo
-echo -n "  System load: ${load_percent} "
-/usr/bin/landscape-sysinfo --sysinfo-plugins=Memory
+if [ $(echo "`cut -f1 -d ' ' /proc/loadavg` < $threshold" | bc) -eq 1 ]; then
+    echo
+    echo -n "  System information as of "
+    /bin/date
+    echo
+    /usr/bin/landscape-sysinfo --exclude-sysinfo-plugins=Network,LandscapeLink,Disk,LoggedInUsers
+else
+    echo
+    echo " System information disabled due to load higher than $threshold"
+fi
