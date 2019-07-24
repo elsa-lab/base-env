@@ -1,6 +1,8 @@
 #!/bin/bash
 
 WORKING_DIR=$(pwd)
+MOTD_PATH="/etc/update-motd.d"
+BIN_PATH="/usr/local/bin"
 ARCHI=$(uname -m)
 
 # Check Architecture
@@ -56,7 +58,17 @@ cd ${WORKING_DIR}/Service
 ## Service: Hosts Monitor
 ./install-hosts-monitor.sh
 
-# Part III: MOTD
-cd ${WORKING_DIR}/MOTD
+# Part III: Script
+cd ${WORKING_DIR}/Script
+sudo cp ./user_managment/* ${BIN_PATH}/
+sudo cp ./server_status/* ${BIN_PATH}/
 
-./install-motd.sh
+## Script: motd
+sudo chmod -x ${MOTD_PATH}/10-help-text
+sudo chmod -x ${MOTD_PATH}/90-updates-available
+sudo chmod -x ${MOTD_PATH}/91-release-upgrade
+sudo chmod -x ${MOTD_PATH}/97-overlayroot
+sudo cp ./motd/* ${MOTD_PATH}/
+sudo ln -s ${BIN_PATH}/hdd-status ${MOTD_PATH}/51-hdd-status
+sudo ln -s ${BIN_PATH}/gpu-status ${MOTD_PATH}/52-gpu-status
+sudo ln -s ${BIN_PATH}/vnc-status ${MOTD_PATH}/53-vnc-status

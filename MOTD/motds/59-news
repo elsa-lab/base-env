@@ -1,9 +1,0 @@
-#!/bin/bash
-
-UNDERLINE="\033[4m"
-GREEN="\033[0;32m"
-RESET="\033[0m"
-
-printf "\n"
-printf "  For more information:\n"
-printf "    ${GREEN}http://elsa.cs.nthu.edu.tw/s/H1rxQ8yKG${RESET}\n"
