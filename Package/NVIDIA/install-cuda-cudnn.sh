@@ -80,13 +80,22 @@ export CUDA_VISIBLE_DEVICES="0"
 
 function chcuda () {
   VERSION=$1
-  SOURCE="/usr/local/cuda-${VERSION}"
+  PREFIX="cuda-"
+  SOURCE="/usr/local/${PREFIX}${VERSION}"
   
   if [ ! -d "${SOURCE}" ]; then
-    echo "$1 is an invalid version of CUDA"   
+    echo "Info: $1 is an invalid version of CUDA"   
+    echo "Usage: ${FUNCNAME[0]} <available version of CUDA>"
+    echo -n "       (available versions:"
+    for d in $(ls /usr/local); do
+      if [[ "${d}" == ${PREFIX}* ]]; then
+        echo -n "  ${d#${PREFIX}}"
+      fi
+    done
+    echo ")"
   else
     ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
-    echo "Switch CUDA version to $1"
+    echo "Info Switch CUDA version to $1"
   fi
 }
 ' | sudo tee /etc/profile.d/cuda.sh
