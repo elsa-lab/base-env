@@ -77,9 +77,21 @@ export CUDA_HOME="${HOME}/.cuda"
 export PATH="${CUDA_HOME}/bin:${PATH}"
 export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64:${LD_LIBRARY_PATH}"
 export CUDA_VISIBLE_DEVICES="0"
+
+function chcuda () {
+  VERSION=$1
+  SOURCE="/usr/local/cuda-${VERSION}"
+  
+  if [ ! -d "${SOURCE}" ]; then
+    echo "$1 is an invalid version of CUDA"   
+  else
+    ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
+    echo "Switch CUDA version to $1"
+  fi
+}
 ' | sudo tee /etc/profile.d/cuda.sh
 
-# default use cuda-9.0
+# default use cuda-10.0
 ln -n -f -s /usr/local/cuda-10.0 ~/.cuda
 sudo ln -n -f -s /usr/local/cuda-10.0 /etc/skel/.cuda
 
