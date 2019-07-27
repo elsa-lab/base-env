@@ -95,7 +95,7 @@ function chcuda () {
     echo ")"
   else
     ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
-    echo "Info Switch CUDA version to $1"
+    echo "Info: Switch to CUDA $1"
   fi
 }
 ' | sudo tee /etc/profile.d/cuda.sh
