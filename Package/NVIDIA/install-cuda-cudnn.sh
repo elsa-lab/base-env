@@ -51,21 +51,21 @@ sudo -v
 sudo ./"${CUDA8_INSTALLER}" --silent --toolkit --verbose
 
 # install cudnn library to cuda8 home
-sudo tar --no-same-owner -xzf "${CUDA8_CUDNN5_TGZ}" -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
-sudo tar --no-same-owner -xzf "${CUDA8_CUDNN6_TGZ}" -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
-sudo tar --no-same-owner -xzf "${CUDA8_CUDNN7_TGZ}" -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
+sudo tar --no-same-owner -xzf "${CUDA8_CUDNN5_TGZ}" -C /usr/local
+sudo tar --no-same-owner -xzf "${CUDA8_CUDNN6_TGZ}" -C /usr/local
+sudo tar --no-same-owner -xzf "${CUDA8_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda9 toolkit
 sudo ./"${CUDA9_INSTALLER}" --silent --toolkit --verbose
 
 # install cudnn library to cuda9 home
-sudo tar --no-same-owner -xzf "${CUDA9_CUDNN7_TGZ}" -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
+sudo tar --no-same-owner -xzf "${CUDA9_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda10 toolkit
 sudo ./"${CUDA10_INSTALLER}" --silent --toolkit --verbose
 
 # install cudnn library to cuda10 home
-sudo tar --no-same-owner -xzf "${CUDA10_CUDNN7_TGZ}" -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*'
+sudo tar --no-same-owner -xzf "${CUDA10_CUDNN7_TGZ}" -C /usr/local
 
 # remove default symbloic link
 sudo rm -f /usr/local/cuda
