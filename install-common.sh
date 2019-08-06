@@ -38,6 +38,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-mujoco.sh
 ./Dependency/install-python36-37.sh 
 ./Dependency/install-opencv.sh 
+./Dependency/install-earlyoom.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
