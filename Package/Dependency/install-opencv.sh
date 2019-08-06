@@ -45,4 +45,4 @@ sudo make install -j
 
 # clean up
 rm -rf /tmp/opencv /tmp/opencv_contrib
-sudo rm -rf /tmp/opencv-2.4.11-build /tmp/opencv-3.2.0-build
+sudo rm -rf /tmp/opencv-${CV2_RELEASE}-build /tmp/opencv-${CV3_RELEASE}-build
