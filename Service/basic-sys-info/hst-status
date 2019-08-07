@@ -29,7 +29,7 @@ printf "${MEM_ARG}" "Memory"
 printf "${TIME_ARG}" "Timestamp"
 printf "${RESET}"
 printf "\n"
-for HOSTNAME in $(grep "${IP_PREFIX}" /etc/hosts | grep -v ${HOSTNAME} | sed 's/[0-9.]//g;'); do
+for HOSTNAME in $(grep "${IP_PREFIX}" /etc/hosts | grep -v "\<${HOSTNAME}\>" | sed 's/[0-9.]//g;'); do
   printf "  "
   printf "${HOSTNAME_ARG}" "${HOSTNAME}"
   nc -z -w 1 "${HOSTNAME}" "${SSH_PORT}" &> /dev/null
