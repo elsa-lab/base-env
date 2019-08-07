@@ -29,13 +29,13 @@ printf "${MEM_ARG}" "Memory"
 printf "${TIME_ARG}" "Timestamp"
 printf "${RESET}"
 printf "\n"
-for HOSTNAME in $(grep "${IP_PREFIX}" /etc/hosts | grep -v "\<${HOSTNAME}\>" | sed 's/[0-9.]//g;'); do
+for H in $(grep "${IP_PREFIX}" /etc/hosts | grep -v localhost | sed 's/[0-9.]//g;'); do
   printf "  "
-  printf "${HOSTNAME_ARG}" "${HOSTNAME}"
-  nc -z -w 1 "${HOSTNAME}" "${SSH_PORT}" &> /dev/null
+  printf "${HOSTNAME_ARG}" "${H}"
+  nc -z -w 1 "${H}" "${SSH_PORT}" &> /dev/null
   if [ $? -eq 0 ]; then
     printf "${GREEN}${STATUS_ARG}${RESET}" "ONLINE"
-    read -a array <<< $(nc -w 1 "${HOSTNAME}" "${INFO_PORT}")
+    read -a array <<< $(nc -w 1 "${H}" "${INFO_PORT}")
     if [ ${#array[@]} -ne 0 ]; then
       LOAD=$(python3 -c "print('%3.1f%%' % (${array[0]} / ${array[4]}.0 * 100.0))")
       if [ ${array[0]%%.*} -ge ${array[4]} ]; then
