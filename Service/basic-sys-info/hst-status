@@ -29,7 +29,7 @@ printf "${MEM_ARG}" "Memory"
 printf "${TIME_ARG}" "Timestamp"
 printf "${RESET}"
 printf "\n"
-for H in ${HOSTNAME} $(grep "${IP_PREFIX}" /etc/hosts | grep -v "\<$(hostname -f)\>" | sed 's/[0-9.]//g;'); do
+for H in $(grep "${IP_PREFIX}" /etc/hosts | sed 's/[0-9.]//g;'); do
   printf "  "
   printf "${HOSTNAME_ARG}" "${H}"
   nc -z -w 1 "${H}" "${SSH_PORT}" &> /dev/null
@@ -37,7 +37,11 @@ for H in ${HOSTNAME} $(grep "${IP_PREFIX}" /etc/hosts | grep -v "\<$(hostname -f
     printf "${GREEN}${STATUS_ARG}${RESET}" "ONLINE"
     read -a array <<< $(nc -w 1 "${H}" "${INFO_PORT}")
     if [ ${#array[@]} -ne 0 ]; then
-      LOAD=$(python3 -c "print('%3.1f%%' % (${array[0]} / ${array[4]}.0 * 100.0))")
+      if [ "$1" == "-n" ]; then
+        LOAD=${array[0]}
+      else
+        LOAD=$(python3 -c "print('%3.1f%%' % (${array[0]} / ${array[4]}.0 * 100.0))")
+      fi
       if [ ${array[0]%%.*} -ge ${array[4]} ]; then
         printf "${RED}"
       elif [ ${array[0]%%.*} -ge $(( array[4] / 2 )) ]; then
