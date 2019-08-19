@@ -39,6 +39,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-python36-37.sh 
 ./Dependency/install-opencv.sh 
 ./Dependency/install-earlyoom.sh
+./Dependency/install-fail2ban.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh

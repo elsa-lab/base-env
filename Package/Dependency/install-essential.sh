@@ -13,7 +13,7 @@ sudo apt-get install -y \
   landscape-common \
   ppa-purge \
   screen tmux \
-  fail2ban sshfs \
+  sshfs \
   vim zip \
   ffmpeg \
   libosmesa6-dev \
