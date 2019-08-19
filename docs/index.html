@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Introduction" href="introduction/introduction.html" /> 
+    <link rel="next" title="1. Introduction" href="Introduction/Introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -81,13 +81,26 @@
             
               <p class="caption"><span class="caption-text">Introduction</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction/introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction/Introduction.html">1. Introduction</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Package</span></p>
+<p class="caption"><span class="caption-text">Hardware</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Package/Dependency.html">1. Dependency</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Package/NVIDIA.html">2. NVIDIA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Package/VNC.html">3. TigerVNC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware/Choosing.html">1. Precaution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware/Building.html">2. Building Tips</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="OS/OS.html">1. OS Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Usage/Usage.html">1. Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts Intro.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Scripts/Dependency.html">1. Dependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scripts/NVIDIA.html">2. NVIDIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Scripts/VNC.html">3. TigerVNC</a></li>
 </ul>
 
             
@@ -154,37 +167,80 @@
             
   <div class="section" id="welcome-to-elsa-env-documentation">
 <h1>Welcome to elsa-env documentation!<a class="headerlink" href="#welcome-to-elsa-env-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Elsa-env is designed for server installation. The installation package includes some essential dependencies, cuda, cudnn, VNC … etc.</p>
+<p>Elsa-env is designed for server installation.
+The documnent will show you how to choose hardware, install operating system and maintain the server.
+The bash scripts includes some essential dependencies, cuda, cudnn, VNC … etc.</p>
 <div class="section" id="links">
 <h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/elsa-lab/base-env">GitHub repository</a></p></li>
-<li><p><a class="reference external" href="https://pypi.org/project/base-env/">Server note page</a></p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Introduction</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction/introduction.html">1. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction/introduction.html#what-is-base-env">1.1. What is base-env</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction/introduction.html#what-s-in-base-env">1.2. What’s in base-env</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction/Introduction.html">1. Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Introduction/Introduction.html#what-is-base-env">1.1. What is base-env</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Introduction/Introduction.html#how-to-use">1.2. How to use</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Package</span></p>
+<p class="caption"><span class="caption-text">Hardware</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Package/Dependency.html">1. Dependency</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Package/Dependency.html#introduction">1.1. Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Package/Dependency.html#packages-intro">1.2. Packages Intro.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware/Choosing.html">1. Precaution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hardware/Choosing.html#hardware-recommendation">1.1. Hardware Recommendation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hardware/Choosing.html#motherboard-ram">1.2. Motherboard &amp; RAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hardware/Choosing.html#calculate-the-power-consumption">1.3. Calculate the power consumption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hardware/Choosing.html#remember-to-record-the-s-n">1.4. Remember to record the S/N</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Package/NVIDIA.html">2. NVIDIA</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Package/NVIDIA.html#env-package">2.1. env package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hardware/Building.html">2. Building Tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Hardware/Building.html#build-a-server-step-by-step">2.1. Build a server step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hardware/Building.html#something-important">2.2. Something important</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Package/VNC.html">3. TigerVNC</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Package/VNC.html#env-package">3.1. env package</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">OS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="OS/OS.html">1. OS Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="OS/OS.html#quick-note">1.1. Quick Note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OS/OS.html#memory-test">1.2. Memory test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OS/OS.html#gpu-burn">1.3. GPU burn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OS/OS.html#install-os-step-by-step">1.4. install OS step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OS/OS.html#something-must-do-after-install-the-os">1.5. Something must do after install the OS</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Usage/Usage.html">1. Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Usage/Usage.html#add-user">1.1. Add User</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Usage/Usage.html#server-status">1.2. Server Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Usage/Usage.html#vnc-usage">1.3. VNC Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Usage/Usage.html#change-cuda-version">1.4. Change cuda version</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Scripts Intro.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Scripts/Dependency.html">1. Dependency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/Dependency.html#introduction">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/Dependency.html#packages-intro">1.2. Packages Intro.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Scripts/NVIDIA.html">2. NVIDIA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/NVIDIA.html#env-package">2.1. env package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Scripts/VNC.html">3. TigerVNC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Scripts/VNC.html#env-package">3.1. env package</a></li>
 </ul>
 </li>
 </ul>
@@ -207,7 +263,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="introduction/introduction.html" class="btn btn-neutral float-right" title="1. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Introduction/Introduction.html" class="btn btn-neutral float-right" title="1. Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
