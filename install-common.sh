@@ -17,12 +17,6 @@ if ! lspci | grep -q 'NVIDIA'; then
   exit 1
 fi
 
-# Check Boot Option
-if ! grep -q 'GRUB_CMDLINE_LINUX_DEFAULT.*nomodeset.*' /etc/default/grub; then
-  echo Please run ./Package/NVIDIA/add-boot-option.sh then reboot
-  exit 1
-fi
-
 # Set DIR_MODE of adduser
 sudo -v
 sudo sed -i "s/DIR_MODE=0755/DIR_MODE=0700/" /etc/adduser.conf
