@@ -11,7 +11,7 @@ echo '
 [DEFAULT]
 
 bantime  = 86400
-ignoreip = 127.0.0.1/8 140.114.0.0.1/16
+ignoreip = 127.0.0.1/8 140.114.0.1/16
 ' | sudo tee /etc/fail2ban/jail.local
 
 # restart fail2ban

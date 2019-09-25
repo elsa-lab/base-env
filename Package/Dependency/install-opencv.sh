@@ -26,7 +26,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DWITH_CUDA=OFF \
       -DCMAKE_INSTALL_PREFIX=/usr/local/opencv-${CV2_RELEASE} \
       /tmp/opencv
-sudo make install -j
+sudo make install -j`nproc`
 
 # build and install opencv3 without CUDA support
 sudo -v
@@ -41,7 +41,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=/usr/local/opencv-${CV3_RELEASE} \
       -DOPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib/modules \
       /tmp/opencv
-sudo make install -j
+sudo make install -j`nproc`
 
 # clean up
 rm -rf /tmp/opencv /tmp/opencv_contrib

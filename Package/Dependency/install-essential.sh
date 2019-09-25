@@ -34,9 +34,9 @@ sudo apt-get install -y \
   python3-dev
 
 # install Snoopy
-sudo apt-get install -y debconf-utils
-echo snoopy snoopy/install-ld-preload boolean true | sudo debconf-set-selections
-sudo apt-get install -y snoopy
+# sudo apt-get install -y debconf-utils
+# echo snoopy snoopy/install-ld-preload boolean true | sudo debconf-set-selections
+# sudo apt-get install -y snoopy
 
 # install PatchELF (for mujoco-py)
 sudo add-apt-repository -y ppa:jamesh/snap-support
