@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Dependency" href="../Package/Dependency.html" />
+    <link rel="next" title="1. Usage" href="../Usage/Usage.html" />
     <link rel="prev" title="2. Building Tips" href="../Hardware/Building.html" /> 
 </head>
 
@@ -95,16 +95,20 @@
 <li class="toctree-l2"><a class="reference internal" href="#quick-note">1.1. Quick Note</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#memory-test">1.2. Memory test</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#gpu-burn">1.3. GPU burn</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-os-step-by-step">1.4. install OS step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-tutorial">1.4. Full tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#something-must-do-after-install-the-os">1.5. Something must do after install the OS</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Package</span></p>
+<p class="caption"><span class="caption-text">Usage</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Package/Dependency.html">1. Dependency</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Package/NVIDIA.html">2. NVIDIA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Package/VNC.html">3. TigerVNC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Usage/Usage.html">1. Usage</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts Intro.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Scripts/Dependency.html">1. Dependency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scripts/NVIDIA.html">2. NVIDIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Scripts/VNC.html">3. TigerVNC</a></li>
 </ul>
 
             
@@ -173,18 +177,65 @@
 <h1>1. OS Installation<a class="headerlink" href="#os-installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="quick-note">
 <h2>1.1. Quick Note<a class="headerlink" href="#quick-note" title="Permalink to this headline">¶</a></h2>
+<p>In this part, we list all parameters you have set during installing.
+If you need a full tutorial, please refer <em>Full tutorial</em> part.</p>
+<dl class="simple">
+<dt>Preparation</dt><dd><ul class="simple">
+<li><p>A USB stick with Ubuntu 16.04</p></li>
+<li><p>Keyboard &amp; screen</p></li>
+</ul>
+</dd>
+<dt>BIOS</dt><dd><ul class="simple">
+<li><p>Fast Boot : <code class="docutils literal notranslate"><span class="pre">Disable</span></code></p></li>
+<li><p>Secure Boot : <code class="docutils literal notranslate"><span class="pre">Clear</span> <span class="pre">Secure</span> <span class="pre">Boot</span> <span class="pre">Keys</span></code></p></li>
+<li><p>Boot Memu : Name of USB drive <code class="docutils literal notranslate"><span class="pre">without</span> <span class="pre">UEFI</span> <span class="pre">prefix</span></code></p></li>
+</ul>
+</dd>
+<dt>Langauge</dt><dd><ul class="simple">
+<li><p>Area : <code class="docutils literal notranslate"><span class="pre">United</span> <span class="pre">States</span></code></p></li>
+<li><p>Keyboard Layout : <code class="docutils literal notranslate"><span class="pre">no</span></code></p></li>
+<li><p>Country of Keyboard : <code class="docutils literal notranslate"><span class="pre">English</span> <span class="pre">(US)</span></code></p></li>
+<li><p>Keyboard layout : <code class="docutils literal notranslate"><span class="pre">English</span> <span class="pre">(US)</span></code></p></li>
+</ul>
+</dd>
+<dt>Network &amp; User Configuration</dt><dd><ul class="simple">
+<li><p>Hostname : <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">server</span> <span class="pre">name</span></code></p></li>
+<li><p>Create Users : <code class="docutils literal notranslate"><span class="pre">your</span> <span class="pre">username</span></code></p></li>
+<li><p>Encrypt the dicertory : <code class="docutils literal notranslate"><span class="pre">No</span></code></p></li>
+<li><p>Configure the clock : <code class="docutils literal notranslate"><span class="pre">Yes</span></code></p></li>
+</ul>
+</dd>
+<dt>Disk Partition</dt><dd><ul class="simple">
+<li></li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="memory-test">
 <h2>1.2. Memory test<a class="headerlink" href="#memory-test" title="Permalink to this headline">¶</a></h2>
-<p>Must finish all of the tasks.
-Sometimes, error only occurrs in the 4th round</p>
+<p>We use MemTest86 to test the RAM for faults using a series of comprehensive algorithms and test patterns.</p>
+<ul class="simple">
+<li><p>Flash Memtest86 into a bootable USB stick.</p></li>
+<li><p>With USB stick, Start the server.</p></li>
+<li><p>test memory</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>You must finish all of the tasks.
+Sometimes, error only occurrs in the 4th round.</p>
+</div>
 </div>
 <div class="section" id="gpu-burn">
 <h2>1.3. GPU burn<a class="headerlink" href="#gpu-burn" title="Permalink to this headline">¶</a></h2>
-<p>Burn the GPU in the server room only.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Remember that burning a GPU need lots of power. It may cause a trip. So only burning it in server rooms.</p>
 </div>
-<div class="section" id="install-os-step-by-step">
-<h2>1.4. install OS step by step<a class="headerlink" href="#install-os-step-by-step" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="full-tutorial">
+<h2>1.4. Full tutorial<a class="headerlink" href="#full-tutorial" title="Permalink to this headline">¶</a></h2>
+<p>If you need a tutorial in detail. Please refer the following link.</p>
+<p><a class="reference external" href="https://hackmd.io/&#64;dppa1008/SyyedabiE/https%3A%2F%2Fhackmd.io%2Fs%2FByP6Fp-j4">OS installation for elsa lab servers</a></p>
 </div>
 <div class="section" id="something-must-do-after-install-the-os">
 <h2>1.5. Something must do after install the OS<a class="headerlink" href="#something-must-do-after-install-the-os" title="Permalink to this headline">¶</a></h2>
@@ -200,7 +251,7 @@ Sometimes, error only occurrs in the 4th round</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Package/Dependency.html" class="btn btn-neutral float-right" title="1. Dependency" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Usage/Usage.html" class="btn btn-neutral float-right" title="1. Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Hardware/Building.html" class="btn btn-neutral float-left" title="2. Building Tips" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
