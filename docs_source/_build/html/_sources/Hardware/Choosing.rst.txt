@@ -17,7 +17,7 @@ product page -> Support -> CPU/Memory Support
 
 Calculate the power consumption
 --------------------------------
-Before you buy a PSU, Refer to https://outervision.com/power-supply-calculator for power consumption.
+Before you buy a PSU, Refer to `OuterVision <https://outervision.com/power-supply-calculator>`_ for power consumption.
 
 
 Remember to record the S/N

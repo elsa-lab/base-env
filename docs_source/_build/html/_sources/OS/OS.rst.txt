@@ -4,7 +4,7 @@ OS Installation
 Quick Note
 ----------------
 In this part, we list all parameters you have to set during installing.
-If you need a full tutorial, please refer `OS installation for elsa lab servers <https://hackmd.io/@dppa1008/SyyedabiE/https%3A%2F%2Fhackmd.io%2Fs%2FByP6Fp-j4>`_ .
+If you need a full tutorial, please refer to `OS installation for elsa lab servers <https://hackmd.io/@dppa1008/SyyedabiE/https%3A%2F%2Fhackmd.io%2Fs%2FByP6Fp-j4>`_ .
 
 Preparation
     - A USB stick with Ubuntu 16.04
