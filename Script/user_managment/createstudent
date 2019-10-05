@@ -22,6 +22,7 @@ sudo adduser ${STUDENT} \
 echo "${STUDENT}:${PASSWD}" | sudo chpasswd
 sudo mkdir /warehouse/${STUDENT}
 sudo mkdir /home/${STUDENT}/Warehouse
+suod chmod go-rwx /home/${STUDENT}/Warehouse
 sudo chown ${STUDENT}:${GROUP} /warehouse/${STUDENT} /home/${STUDENT}/Warehouse
 echo /warehouse/${STUDENT} /home/${STUDENT}/Warehouse none defaults,bind 0 0 | sudo tee -a /etc/fstab
 sudo mount -a

@@ -21,5 +21,11 @@ sudo adduser ${ADMIN} \
   --disabled-password
 sudo usermod -aG sudo ${ADMIN}
 echo "${ADMIN}:${PASSWD}" | sudo chpasswd
+sudo mkdir /warehouse/${ADMIN}
+sudo mkdir /home/${ADMIN}/Warehouse
+sudo chmod go-rwx /home/${ADMIN}/Warehouse
+sudo chown ${ADMIN}:${GROUP} /warehouse/${ADMIN} /home/${ADMIN}/Warehouse
+echo /warehouse/${ADMIN} /home/${ADMIN}/Warehouse none defaults,bind 0 0 | sudo tee -a /etc/fstab
+sudo mount -a
 echo "Username: ${ADMIN}"
 echo "Password: ${PASSWD}"
