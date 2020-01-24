@@ -9,4 +9,5 @@ sudo add-apt-repository -y ppa:deadsnakes/ppa
 # install and update 
 sudo apt update
 sudo apt install -y python3.6-dev python3.7-dev
+sudo apt install -y python3.6-tk python3.7-tk
 
