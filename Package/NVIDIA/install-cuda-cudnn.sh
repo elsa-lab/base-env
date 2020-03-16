@@ -35,7 +35,7 @@ cd "${TEMP_PATH}"
 curl -L "${CUDA8_LINK}" -o "${CUDA8_INSTALLER}"
 curl -L "${CUDA9_LINK}" -o "${CUDA9_INSTALLER}"
 curl -L "${CUDA10_LINK}" -o "${CUDA10_INSTALLER}"
-curl -L "${CUDA10_LINK}" -o "${CUDA10_1_INSTALLER}"
+curl -L "${CUDA10_1_LINK}" -o "${CUDA10_1_INSTALLER}"
 chmod +x "${CUDA8_INSTALLER}"
 chmod +x "${CUDA9_INSTALLER}"
 chmod +x "${CUDA10_INSTALLER}"
@@ -51,25 +51,25 @@ curl -LO "${CUDA10_1_CUDNN7_LINK}"
 sudo -v
 
 # install cuda8 toolkit
-sudo ./"${CUDA8_INSTALLER}" --silent --toolkit
+sudo ./"${CUDA8_INSTALLER}" --silent --toolkit --override
 
 # install cudnn library to cuda8 home
 sudo tar --no-same-owner -xzf "${CUDA8_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda9 toolkit
-sudo ./"${CUDA9_INSTALLER}" --silent --toolkit
+sudo ./"${CUDA9_INSTALLER}" --silent --toolkit --override
 
 # install cudnn library to cuda9 home
 sudo tar --no-same-owner -xzf "${CUDA9_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda10 toolkit
-sudo ./"${CUDA10_INSTALLER}" --silent --toolkit
+sudo ./"${CUDA10_INSTALLER}" --silent --toolkit --override
 
 # install cudnn library to cuda10 home
 sudo tar --no-same-owner -xzf "${CUDA10_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda10.1 toolkit
-sudo ./"${CUDA10_1_INSTALLER}" --silent --toolkit
+sudo ./"${CUDA10_1_INSTALLER}" --silent --toolkit --override
 
 # install cudnn library to cuda10 home
 sudo tar --no-same-owner -xzf "${CUDA10_1_CUDNN7_TGZ}" -C /usr/local
@@ -77,35 +77,37 @@ sudo tar --no-same-owner -xzf "${CUDA10_1_CUDNN7_TGZ}" -C /usr/local
 # remove default symbloic link
 sudo rm -f /usr/local/cuda
 
-# some env variables for bash
+# some env variables for shell
 echo '
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_HOME="${HOME}/.cuda"
 export PATH="${CUDA_HOME}/bin:${PATH}"
 export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64:${LD_LIBRARY_PATH}"
 export CUDA_VISIBLE_DEVICES="0"
-
-function chcuda () {
-  VERSION=$1
-  PREFIX="cuda-"
-  SOURCE="/usr/local/${PREFIX}${VERSION}"
-  
-  if [ ! -d "${SOURCE}" ]; then
-    echo "Info: $1 is an invalid version of CUDA"   
-    echo "Usage: ${FUNCNAME[0]} <available version of CUDA>"
-    echo -n "       (available versions:"
-    for d in $(ls /usr/local); do
-      if [[ "${d}" == ${PREFIX}* ]]; then
-        echo -n "  ${d#${PREFIX}}"
-      fi
-    done
-    echo ")"
-  else
-    ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
-    echo "Info: Switch to CUDA $1"
-  fi
-}
 ' | sudo tee /etc/profile.d/cuda.sh
+
+# provide switching function
+echo '
+VERSION=$1
+PREFIX="cuda-"
+SOURCE="/usr/local/${PREFIX}${VERSION}"
+  
+if [ ! -d "${SOURCE}" ]; then
+  echo "Info: $1 is an invalid version of CUDA"   
+  echo "Usage: ${FUNCNAME[0]} <available version of CUDA>"
+  echo -n "       (available versions:"
+  for d in $(ls /usr/local); do
+    if [[ "${d}" == ${PREFIX}* ]]; then
+      echo -n "  ${d#${PREFIX}}"
+    fi
+  done
+  echo ")"
+else
+  ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
+  echo "Info: Switch to CUDA $1"
+fi
+' | sudo tee /usr/local/bin/chcuda
+sudo chmod +x /usr/local/bin/chcuda
 
 # default use cuda-10.0
 ln -n -f -s /usr/local/cuda-10.0 ~/.cuda
