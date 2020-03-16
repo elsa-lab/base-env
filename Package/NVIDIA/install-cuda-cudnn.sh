@@ -88,6 +88,8 @@ export CUDA_VISIBLE_DEVICES="0"
 
 # provide switching function
 echo '
+#!/bin/sh
+
 VERSION=$1
 PREFIX="cuda-"
 SOURCE="/usr/local/${PREFIX}${VERSION}"
