@@ -49,9 +49,6 @@ sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
 # Part II: Service
 cd ${WORKING_DIR}/Service
 
-## Service: Basic System Information
-./install-basic-sys-info.sh
-
 ## Service: Hosts Monitor
 ./install-hosts-monitor.sh
 
