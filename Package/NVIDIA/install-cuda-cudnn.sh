@@ -77,31 +77,6 @@ sudo tar --no-same-owner -xzf "${CUDA10_1_CUDNN7_TGZ}" -C /usr/local
 # remove default symbloic link
 sudo rm -f /usr/local/cuda
 
-# provide switching function
-echo '
-#!/bin/sh
-
-VERSION=$1
-PREFIX="cuda-"
-SOURCE="/usr/local/${PREFIX}${VERSION}"
-  
-if [ ! -d "${SOURCE}" ]; then
-  echo "Info: $1 is an invalid version of CUDA"   
-  echo "Usage: ${FUNCNAME[0]} <available version of CUDA>"
-  echo -n "       (available versions:"
-  for d in $(ls /usr/local); do
-    if [[ "${d}" == ${PREFIX}* ]]; then
-      echo -n "  ${d#${PREFIX}}"
-    fi
-  done
-  echo ")"
-else
-  ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
-  echo "Info: Switch to CUDA $1"
-fi
-' | sudo tee /usr/local/bin/chcuda
-sudo chmod +x /usr/local/bin/chcuda
-
 # default use cuda-10.0
 ln -n -f -s /usr/local/cuda-10.0 ~/.cuda
 sudo ln -n -f -s /usr/local/cuda-10.0 /etc/skel/.cuda

@@ -48,19 +48,19 @@ cd ${WORKING_DIR}/Package
 # Part II: Script
 cd ${WORKING_DIR}/Script
 
-## Script: Install scripts except profile.ds'
+## Script: Installation except profile.d
 for s in $(ls -A -I profile.d); do
   for ss in $(ls ${s}); do
     sudo ln -fns $(pwd)/${s}/${ss} ${BIN_PATH}/${ss}
   done
 done
 
-## Script: Install profile.ds
+## Script: profile.d
 for ss in $(ls -A profile.d); do
   sudo ln -fns $(pwd)/profile.d/${ss} /etc/profile.d/${ss}
 done
 
-## Script: Install motds
+## Script: motd
 sudo chmod -x ${MOTD_PATH}/*
 sudo chmod +x ${MOTD_PATH}/00-header
 sudo chmod +x ${MOTD_PATH}/98-reboot-required

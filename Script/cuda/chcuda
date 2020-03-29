@@ -1,0 +1,20 @@
+#!/bin/sh
+
+VERSION=$1
+PREFIX="cuda-"
+SOURCE="/usr/local/${PREFIX}${VERSION}"
+  
+if [ ! -d "${SOURCE}" ]; then
+  echo "Info: $1 is an invalid version of CUDA"   
+  echo "Usage: ${FUNCNAME[0]} <available version of CUDA>"
+  echo -n "       (available versions:"
+  for d in $(ls /usr/local); do
+    if [[ "${d}" == ${PREFIX}* ]]; then
+      echo -n "  ${d#${PREFIX}}"
+    fi
+  done
+  echo ")"
+else
+  ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
+  echo "Info: Switch to CUDA $1"
+fi
