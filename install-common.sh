@@ -44,8 +44,6 @@ cd ${WORKING_DIR}/Package
 ./TigerVNC/install-xfce4.sh
 ./TigerVNC/install-vncserver.sh
 ./TigerVNC/install-essential.sh
-sudo cp ./TigerVNC/scripts/vncserver  /usr/bin/vncserver
-sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
 
 # Part II: Script
 cd ${WORKING_DIR}/Script
