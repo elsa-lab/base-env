@@ -34,6 +34,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-opencv.sh 
 ./Dependency/install-earlyoom.sh
 ./Dependency/install-fail2ban.sh
+./Dependency/install-hosts-monitor.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
@@ -46,13 +47,7 @@ cd ${WORKING_DIR}/Package
 sudo cp ./TigerVNC/scripts/vncserver  /usr/bin/vncserver
 sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
 
-# Part II: Service
-cd ${WORKING_DIR}/Service
-
-## Service: Hosts Monitor
-./install-hosts-monitor.sh
-
-# Part III: Script
+# Part II: Script
 cd ${WORKING_DIR}/Script
 sudo cp ./user_managment/* ${BIN_PATH}/
 sudo cp ./server_status/* ${BIN_PATH}/

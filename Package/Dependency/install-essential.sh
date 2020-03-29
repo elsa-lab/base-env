@@ -11,7 +11,7 @@ sudo apt-get install -y \
   build-essential cmake \
   curl wget \
   landscape-common \
-  ppa-purge \
+  ppa-purge apt-file \
   screen tmux \
   sshfs \
   vim zip \
