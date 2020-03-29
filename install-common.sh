@@ -49,15 +49,22 @@ sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
 
 # Part II: Script
 cd ${WORKING_DIR}/Script
-sudo cp ./user_managment/* ${BIN_PATH}/
-sudo cp ./server_status/* ${BIN_PATH}/
 
-## Script: motd
-sudo chmod -x ${MOTD_PATH}/10-help-text
-sudo chmod -x ${MOTD_PATH}/90-updates-available
-sudo chmod -x ${MOTD_PATH}/91-release-upgrade
-sudo chmod -x ${MOTD_PATH}/97-overlayroot
-sudo cp ./motd/* ${MOTD_PATH}/
-sudo ln -s ${BIN_PATH}/hdd-status ${MOTD_PATH}/51-hdd-status
-sudo ln -s ${BIN_PATH}/gpu-status ${MOTD_PATH}/52-gpu-status
-sudo ln -s ${BIN_PATH}/vnc-status ${MOTD_PATH}/53-vnc-status
+## Script: Install all scripts
+for s in $(ls -A); do
+  for ss in $(ls ${s}); do
+    sudo ln -fns $(pwd)/${s}/${ss} ${BIN_PATH}/${ss}
+  done
+done
+
+## Script: Install motds
+sudo chmod -x ${MOTD_PATH}/*
+sudo chmod +x ${MOTD_PATH}/00-header
+sudo chmod +x ${MOTD_PATH}/98-reboot-required
+
+sudo ln -fns $(pwd)/motd/landscape-sysinfo ${MOTD_PATH}/50-landscape-sysinfo
+sudo ln -fns $(pwd)/server_status/hdd-status ${MOTD_PATH}/51-hdd-status
+sudo ln -fns $(pwd)/server_status/gpu-status ${MOTD_PATH}/52-gpu-status
+sudo ln -fns $(pwd)/server_status/vnc-status ${MOTD_PATH}/53-vnc-status
+sudo ln -fns $(pwd)/motd/ssh-banner-short ${MOTD_PATH}/56-ssh-banner-short
+sudo ln -fns $(pwd)/motd/newline ${MOTD_PATH}/60-newline
