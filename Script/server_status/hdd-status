@@ -29,6 +29,7 @@ df -h --output=target,size,avail,pcent,source  |
   grep -v udev |   # remove udev
   grep -v : |      # remove sshfs
   grep -v docker | # remove docker
+  grep -v snap |   # remove snap
   while read -a line; do
     printf "  "
     if [ "${line[3]%?}" -gt 80 ]; then
