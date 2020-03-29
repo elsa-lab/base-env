@@ -77,15 +77,6 @@ sudo tar --no-same-owner -xzf "${CUDA10_1_CUDNN7_TGZ}" -C /usr/local
 # remove default symbloic link
 sudo rm -f /usr/local/cuda
 
-# some env variables for shell
-echo '
-export CUDA_DEVICE_ORDER=PCI_BUS_ID
-export CUDA_HOME="${HOME}/.cuda"
-export PATH="${CUDA_HOME}/bin:${PATH}"
-export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64:${LD_LIBRARY_PATH}"
-export CUDA_VISIBLE_DEVICES="0"
-' | sudo tee /etc/profile.d/cuda.sh
-
 # provide switching function
 echo '
 #!/bin/sh

@@ -50,11 +50,16 @@ sudo cp ./TigerVNC/scripts/vnc-pwdgen /usr/local/bin/vnc-pwdgen
 # Part II: Script
 cd ${WORKING_DIR}/Script
 
-## Script: Install all scripts
-for s in $(ls -A); do
+## Script: Install scripts except profile.ds'
+for s in $(ls -A -I profile.d); do
   for ss in $(ls ${s}); do
     sudo ln -fns $(pwd)/${s}/${ss} ${BIN_PATH}/${ss}
   done
+done
+
+## Script: Install profile.ds
+for ss in $(ls -A profile.d); do
+  sudo ln -fns $(pwd)/profile.d/${ss} /etc/profile.d/${ss}
 done
 
 ## Script: Install motds
