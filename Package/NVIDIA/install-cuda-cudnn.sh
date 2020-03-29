@@ -77,9 +77,9 @@ sudo tar --no-same-owner -xzf "${CUDA10_1_CUDNN7_TGZ}" -C /usr/local
 # remove default symbloic link
 sudo rm -f /usr/local/cuda
 
-# default use cuda-10.0
-ln -n -f -s /usr/local/cuda-10.0 ~/.cuda
-sudo ln -n -f -s /usr/local/cuda-10.0 /etc/skel/.cuda
+# default use cuda-10.1
+ln -fns /usr/local/cuda-10.1 ~/.cuda
+sudo ln -fns /usr/local/cuda-10.1 /etc/skel/.cuda
 
 # clean up
 cd && rm -rf "${TEMP_PATH}"

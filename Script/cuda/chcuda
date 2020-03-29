@@ -15,6 +15,6 @@ if [ ! -d "${SOURCE}" ]; then
   done
   echo ")"
 else
-  ln -s -f -n "${SOURCE}" "${CUDA_HOME}"
+  ln -fns "${SOURCE}" "${CUDA_HOME}"
   echo "Info: Switch to CUDA $1"
 fi
