@@ -7,7 +7,7 @@ sudo -v
 sudo apt-get update
 sudo apt-get install -y \
   smartmontools dkms \
-  htop iotop smem \
+  htop iotop iftop smem \
   build-essential cmake \
   curl wget \
   landscape-common \
