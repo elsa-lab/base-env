@@ -22,6 +22,9 @@ sudo -v
 sudo sed -i "s/DIR_MODE=0755/DIR_MODE=0700/" /etc/adduser.conf
 chmod 700 ${HOME}
 
+# Set timezone to Taipei
+sudo timedatectl set-timezone Asia/Taipei
+
 # Part I: Package
 cd ${WORKING_DIR}/Package
 
