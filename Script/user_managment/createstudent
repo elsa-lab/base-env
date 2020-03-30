@@ -21,6 +21,7 @@ sudo adduser ${STUDENT} \
   --disabled-password
 echo "${STUDENT}:${PASSWD}" | sudo chpasswd
 sudo mkdir /warehouse/${STUDENT}
+sudo chmod 700 /warehouse/${STUDENT}
 sudo mkdir /home/${STUDENT}/Warehouse
 sudo chmod go-rwx /home/${STUDENT}/Warehouse
 sudo chown ${STUDENT}:${GROUP} /warehouse/${STUDENT} /home/${STUDENT}/Warehouse

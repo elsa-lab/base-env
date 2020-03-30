@@ -22,6 +22,7 @@ sudo adduser ${ADMIN} \
 sudo usermod -aG sudo ${ADMIN}
 echo "${ADMIN}:${PASSWD}" | sudo chpasswd
 sudo mkdir /warehouse/${ADMIN}
+sudo chmod 700 /warehouse/${ADMIN}
 sudo mkdir /home/${ADMIN}/Warehouse
 sudo chmod go-rwx /home/${ADMIN}/Warehouse
 sudo chown ${ADMIN}:${GROUP} /warehouse/${ADMIN} /home/${ADMIN}/Warehouse
