@@ -35,6 +35,7 @@ cd ${WORKING_DIR}/Package
 ./Dependency/install-earlyoom.sh
 ./Dependency/install-fail2ban.sh
 ./Dependency/install-hosts-monitor.sh
+./Dependency/install-netdata.sh
 
 ## Package: NVIDIA
 ./NVIDIA/install-nv-driver.sh
