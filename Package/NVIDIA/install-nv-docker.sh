@@ -12,6 +12,5 @@ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.li
 sudo apt update
 
 # install nvidia-doceker and restart docker
-sudo apt-get --only-upgrade install docker-ce nvidia-docker2
-sudo apt install -y nvidia-container-toolkit 
+sudo apt install -y docker-ce nvidia-docker2 nvidia-container-toolkit 
 sudo systemctl restart docker
