@@ -49,3 +49,8 @@ sudo ln -n -f -s "${MJ_PATH}" "/etc/skel/.mujoco"
 
 # clean up
 cd && rm -rf "${TEMP_PATH}"
+
+# install PatchELF (for mujoco-py)
+sudo add-apt-repository -y ppa:jamesh/snap-support
+sudo apt-get update
+sudo apt-get install -y patchelf
