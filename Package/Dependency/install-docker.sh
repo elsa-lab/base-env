@@ -4,7 +4,7 @@
 sudo -v
 
 # uninstall old versions, it’s OK if apt-get reports that none of these packages are installed
-sudo apt-get remove -y docker docker-engine docker.io
+sudo apt-get purge -y docker docker-engine docker.io
 
 # add the package repositories
 sudo apt-get update
