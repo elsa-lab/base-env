@@ -1,19 +1,24 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# useful variables
-VNC_INSTALLER="tigervncserver_1.8.0-1ubuntu1_amd64.deb"
-VNC_LINK="https://bintray.com/tigervnc/stable/download_file?file_path=ubuntu-16.04LTS%2Famd64%2Ftigervncserver_1.8.0-1ubuntu1_amd64.deb"
-
-# download vnc installer to /tmp
-cd /tmp
-curl -L "${VNC_LINK}" -o "${VNC_INSTALLER}"
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -euo pipefail
 
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
+# update apt repo
+sudo apt update
+
 # install TigerVNC
-sudo dpkg -i "${VNC_INSTALLER}"
-sudo apt-get install -f -y
+sudo apt instal -y tigervnc-standalone-server tigervnc-xorg-extension
+
+# install web browser
+sudo apt install -y firefox fonts-moe-standard-kai
+
+# install visual studio code
+curl -L 'https://go.microsoft.com/fwlink/?LinkID=760868' -o /tmp/vs-code.deb
+sudo dpkg -i /tmp/vs-code.deb
 
 # clean up
-rm -f "${VNC_INSTALLER}"
+rm -f /tmp/vs-code.deb
