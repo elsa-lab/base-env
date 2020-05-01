@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -euo pipefail
+
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
