@@ -12,22 +12,23 @@ sudo apt update
 
 # install monitoring tools
 sudo apt install -y smartmontools \
-	            htop \
-		    iotop \
-		    iftop \
-		    smem
+                    htop \
+                    iotop \
+                    iftop \
+                    smem \
+                    earlyoom
 
 # install common used apps
 sudo apt install -y dkms \
-	            build-essential \
-		    cmake \
-		    curl \
-		    wget \
-		    screen \
-		    tmux \
-		    sshfs \
-		    vim \
-		    zip
+                    build-essential \
+                    cmake \
+                    curl \
+                    wget \
+                    screen \
+                    tmux \
+                    sshfs \
+                    vim \
+                    zip
 
 # install common used libraries
 sudo apt install -y ffmpeg \
@@ -44,6 +45,6 @@ sudo apt install -y ffmpeg \
 
 # install python3 related libraries
 sudo apt install -y python3-virtualenv \
-	            python3-dev \
-		    python3-tk
+                    python3-dev \
+                    python3-tk
 
