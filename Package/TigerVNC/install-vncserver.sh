@@ -11,13 +11,13 @@ sudo -v
 sudo apt update
 
 # install TigerVNC
-sudo apt instal -y tigervnc-standalone-server tigervnc-xorg-extension
+sudo apt install -y tigervnc-standalone-server tigervnc-xorg-extension
 
 # install web browser
 sudo apt install -y firefox fonts-moe-standard-kai
 
 # install visual studio code
-curl -L 'https://go.microsoft.com/fwlink/?LinkID=760868' -o /tmp/vs-code.deb
+curl -sSL 'https://go.microsoft.com/fwlink/?LinkID=760868' -o /tmp/vs-code.deb
 sudo dpkg -i /tmp/vs-code.deb
 
 # clean up
