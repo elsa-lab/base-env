@@ -41,7 +41,7 @@ cd ${INSTALL_PATH}/Package
 ./Dependency/install-docker.sh
 ./Dependency/install-mujoco.sh
 ./Dependency/install-python36-37.sh 
-./Dependency/install-opencv.sh 
+#./Dependency/install-opencv.sh 
 ./Dependency/install-fail2ban.sh
 ./Dependency/install-hosts-monitor.sh
 ./Dependency/install-netdata.sh
