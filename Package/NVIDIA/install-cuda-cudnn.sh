@@ -1,12 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
+set -euo pipefail
 
 # useful variables
-CUDA8_LINK="https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_375.26_linux-run"
-CUDA8_INSTALLER="cuda_8.0.61_375.26_linux.run"
-
-CUDA8_CUDNN7_LINK="http://developer.download.nvidia.com/compute/redist/cudnn/v7.1.2/cudnn-8.0-linux-x64-v7.1.tgz"
-CUDA8_CUDNN7_TGZ="cudnn-8.0-linux-x64-v7.1.tgz"
-
 CUDA9_LINK="https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run"
 CUDA9_INSTALLER="cuda_9.0.176_384.81_linux.run"
 
@@ -32,46 +30,35 @@ mkdir -p "${TEMP_PATH}"
 cd "${TEMP_PATH}"
 
 # download cuda installer
-curl -L "${CUDA8_LINK}" -o "${CUDA8_INSTALLER}"
-curl -L "${CUDA9_LINK}" -o "${CUDA9_INSTALLER}"
-curl -L "${CUDA10_LINK}" -o "${CUDA10_INSTALLER}"
-curl -L "${CUDA10_1_LINK}" -o "${CUDA10_1_INSTALLER}"
-chmod +x "${CUDA8_INSTALLER}"
+printf "Downloading cuda installer... "
+curl -sSL "${CUDA9_LINK}" -o "${CUDA9_INSTALLER}"
+curl -sSL "${CUDA10_LINK}" -o "${CUDA10_INSTALLER}"
+curl -sSL "${CUDA10_1_LINK}" -o "${CUDA10_1_INSTALLER}"
 chmod +x "${CUDA9_INSTALLER}"
 chmod +x "${CUDA10_INSTALLER}"
 chmod +x "${CUDA10_1_INSTALLER}"
+echo "Done."
 
 # download cudnn tgz
-curl -LO "${CUDA8_CUDNN7_LINK}"
-curl -LO "${CUDA9_CUDNN7_LINK}"
-curl -LO "${CUDA10_CUDNN7_LINK}"
-curl -LO "${CUDA10_1_CUDNN7_LINK}"
+printf "Downloading cuDNN packages... "
+curl -sSLO "${CUDA9_CUDNN7_LINK}"
+curl -sSLO "${CUDA10_CUDNN7_LINK}"
+curl -sSLO "${CUDA10_1_CUDNN7_LINK}"
+echo "Done."
 
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
-# install cuda8 toolkit
-sudo ./"${CUDA8_INSTALLER}" --silent --toolkit --override
-
-# install cudnn library to cuda8 home
-sudo tar --no-same-owner -xzf "${CUDA8_CUDNN7_TGZ}" -C /usr/local
-
 # install cuda9 toolkit
 sudo ./"${CUDA9_INSTALLER}" --silent --toolkit --override
-
-# install cudnn library to cuda9 home
 sudo tar --no-same-owner -xzf "${CUDA9_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda10 toolkit
 sudo ./"${CUDA10_INSTALLER}" --silent --toolkit --override
-
-# install cudnn library to cuda10 home
 sudo tar --no-same-owner -xzf "${CUDA10_CUDNN7_TGZ}" -C /usr/local
 
 # install cuda10.1 toolkit
 sudo ./"${CUDA10_1_INSTALLER}" --silent --toolkit --override
-
-# install cudnn library to cuda10 home
 sudo tar --no-same-owner -xzf "${CUDA10_1_CUDNN7_TGZ}" -C /usr/local
 
 # remove default symbloic link
