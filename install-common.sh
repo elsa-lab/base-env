@@ -1,19 +1,24 @@
 #!/bin/bash
 
-WORKING_DIR=$(pwd)
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -euo pipefail
+
+REPO_LINK="https://github.com/elsa-lab/base-env"
+INSTALL_PATH="/opt/base-env"
 MOTD_PATH="/etc/update-motd.d"
 BIN_PATH="/usr/local/bin"
 ARCHI=$(uname -m)
 
 # Check Architecture
 if [ ${ARCHI} != "x86_64" ]; then
-  echo This Installation Flow only works on 64bit OS
+  echo "This Installation Flow only works on 64bit OS"
   exit 1
 fi
 
 # Check NVIDIA GPU
 if ! lspci | grep -q 'NVIDIA'; then
-  echo This Installation Flow only works when NVIDIA GPU installed
+  echo "This Installation Flow only works when NVIDIA GPU installed"
   exit 1
 fi
 
@@ -25,8 +30,11 @@ chmod 700 ${HOME}
 # Set timezone to Taipei
 sudo timedatectl set-timezone Asia/Taipei
 
+# Install
+sudo git clone "${REPO_LINK}" "${INSTALL_PATH}"
+
 # Part I: Package
-cd ${WORKING_DIR}/Package
+cd ${INSTALL_PATH}/Package
 
 ## Package: Dependency
 ./Dependency/install-essential.sh
@@ -51,7 +59,7 @@ cd ${WORKING_DIR}/Package
 ./TigerVNC/install-essential.sh
 
 # Part II: Script
-cd ${WORKING_DIR}/Script
+cd ${INSTALL_PATH}/Script
 
 ## Script: Installation except profile.d
 for s in $(ls -A -I profile.d); do
