@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Cause the script to exit on any errors
-# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -euo pipefail
-
 TARGET_ARG="%-12s"
 SIZE_ARG="%-7s"
 AVAIL_ARG="%-7s"
