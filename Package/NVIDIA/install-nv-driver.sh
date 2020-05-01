@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
+set -euo pipefail
 
 # useful variables
 DRIVER_VERSION="418.113" # CUDA Version: 10.1
@@ -10,7 +14,7 @@ sudo -v
 
 # download installer to /tmp
 cd /tmp
-curl -L "${DRIVER_LINK}" -O
+curl -sSLO "${DRIVER_LINK}" -O
 chmod +x "${DRIVER_INSTALLER}"
 
 # stop lightdm

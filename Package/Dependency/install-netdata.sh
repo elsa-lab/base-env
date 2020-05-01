@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -euo pipefail
+
 NETDATA_CONFIG="/etc/netdata/netdata.conf"
 NETDATA_PLUGIN_DIS=(
   "diskspace"
