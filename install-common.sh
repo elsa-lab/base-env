@@ -38,7 +38,6 @@ cd ${INSTALL_PATH}/Package
 
 ## Package: Dependency
 ./Dependency/install-essential.sh
-./Dependency/install-bazel.sh
 ./Dependency/install-docker.sh
 ./Dependency/install-mujoco.sh
 ./Dependency/install-python36-37.sh 
