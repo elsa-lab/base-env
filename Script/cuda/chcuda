@@ -4,13 +4,18 @@
 # Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -euo pipefail
 
+if [ $# -eq 0 ]; then
+  echo "Usage: $(basename $0) <available version of CUDA>"
+  exit 1
+fi
+
 VERSION=$1
 PREFIX="cuda-"
 SOURCE="/usr/local/${PREFIX}${VERSION}"
   
 if [ ! -d "${SOURCE}" ]; then
   echo "Info: $1 is an invalid version of CUDA"   
-  echo "Usage: ${FUNCNAME[0]} <available version of CUDA>"
+  echo "Usage: $(basename $0) <available version of CUDA>"
   echo -n "       (available versions:"
   for d in $(ls /usr/local); do
     if [[ "${d}" == ${PREFIX}* ]]; then
