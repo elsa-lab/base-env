@@ -1,39 +1,49 @@
 #!/bin/sh
 
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -euo pipefail
+
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
-# install default packages
-sudo apt-get update
-sudo apt-get install -y \
-  smartmontools dkms \
-  htop iotop iftop smem \
-  build-essential cmake \
-  curl wget \
-  landscape-common \
-  ppa-purge apt-file \
-  screen tmux \
-  sshfs \
-  vim zip \
-  ffmpeg \
-  libosmesa6-dev \
-  libgl1-mesa-dev \
-  libopenmpi-dev \
-  libopenblas-dev \
-  zlib1g-dev \
-  libboost-all-dev \
-  libsdl2-dev \
-  libsdl1.2-dev \
-  libsdl-gfx1.2-dev \
-  libsdl-image1.2-dev \
-  python-virtualenv \
-  python-opencv \
-  python-tk \
-  python-dev \
-  python3-tk \
-  python3-dev
+# update apt repo
+sudo apt update
 
-# install Snoopy
-# sudo apt-get install -y debconf-utils
-# echo snoopy snoopy/install-ld-preload boolean true | sudo debconf-set-selections
-# sudo apt-get install -y snoopy
+# install monitoring tools
+sudo apt install -y smartmontools \
+	            htop \
+		    iotop \
+		    iftop \
+		    smem
+
+# install common used apps
+sudo apt install -y dkms \
+	            build-essential \
+		    cmake \
+		    curl \
+		    wget \
+		    screen \
+		    tmux \
+		    sshfs \
+		    vim \
+		    zip
+
+# install common used libraries
+sudo apt install -y ffmpeg \
+                    libosmesa6-dev \
+                    libgl1-mesa-dev \
+                    libopenmpi-dev \
+                    libopenblas-dev \
+                    zlib1g-dev \
+                    libboost-all-dev \
+                    libsdl2-dev \
+                    libsdl1.2-dev \
+                    libsdl-gfx1.2-dev \
+                    libsdl-image1.2-dev
+
+# install python3 related libraries
+sudo apt install -y python3-virtualenv \
+	            python3-dev \
+		    python3-tk
+
