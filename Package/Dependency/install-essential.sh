@@ -32,6 +32,7 @@ sudo apt install -y dkms \
 
 # install common used libraries
 sudo apt install -y ffmpeg \
+                    libopencv-dev \
                     libosmesa6-dev \
                     libgl1-mesa-dev \
                     libopenmpi-dev \
