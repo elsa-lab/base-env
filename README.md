@@ -1,1 +1,7 @@
-Check https://elsa-lab.github.io/base-env/ !
+# Usage
+
+``` bash
+$ ./Package/NVIDIA/add-boot-option.sh
+# reboot sysytem after adding boot option
+$ ./install-common.sh
+```
