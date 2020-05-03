@@ -28,7 +28,9 @@ sudo apt install -y dkms \
                     tmux \
                     sshfs \
                     vim \
-                    zip
+                    zip \
+                    ppa-purge \
+                    apt-file
 
 # install common used libraries
 sudo apt install -y ffmpeg \
