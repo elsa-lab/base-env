@@ -16,12 +16,6 @@ if [ ${ARCHI} != "x86_64" ]; then
   exit 1
 fi
 
-# Check NVIDIA GPU
-if ! lspci | grep -q 'NVIDIA'; then
-  echo "This Installation Flow only works when NVIDIA GPU installed"
-  exit 1
-fi
-
 # Set DIR_MODE of adduser
 sudo -v
 sudo sed -i "s/DIR_MODE=0755/DIR_MODE=0700/" /etc/adduser.conf
