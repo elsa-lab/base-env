@@ -59,6 +59,10 @@ for s in $(ls -A -I profile.d); do
   done
 done
 
+### VNC starting script should be in /usr/bin (same path of Xvnc)
+sudo ln -fns $(pwd)/vnc/vncserver /usr/bin/vncserver
+sudo rm /usr/local/bin/vncserver
+
 ## Script: profile.d
 for ss in $(ls -A profile.d); do
   sudo ln -fns $(pwd)/profile.d/${ss} /etc/profile.d/${ss}
