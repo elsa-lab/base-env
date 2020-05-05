@@ -80,4 +80,4 @@ sudo ln -fns $(pwd)/server_status/hdd-status ${MOTD_PATH}/51-hdd-status
 sudo ln -fns $(pwd)/server_status/gpu-status ${MOTD_PATH}/52-gpu-status
 sudo ln -fns $(pwd)/server_status/vnc-status ${MOTD_PATH}/53-vnc-status
 sudo ln -fns $(pwd)/motd/ssh-banner-short ${MOTD_PATH}/56-ssh-banner-short
-sudo ln -fns $(pwd)/motd/newline ${MOTD_PATH}/60-newline
+
