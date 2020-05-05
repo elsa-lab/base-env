@@ -71,6 +71,8 @@ done
 ## Script: motd
 sudo chmod -x ${MOTD_PATH}/*
 sudo chmod +x ${MOTD_PATH}/00-header
+sudo chmod +x ${MOTD_PATH}/97-overlayroot
+sudo chmod +x ${MOTD_PATH}/98-fsck-at-reboot
 sudo chmod +x ${MOTD_PATH}/98-reboot-required
 
 sudo ln -fns $(pwd)/motd/landscape-sysinfo ${MOTD_PATH}/50-landscape-sysinfo
