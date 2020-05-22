@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# safer bash script
+set -euo pipefail
+
+# useful variables
+SUFFIX=".cs.nthu.edu.tw"
+HOSTNAME=('anna'       'ariel'      'aurora'     'belle'      'elsa'
+          'elsa-latex' 'giselle'    'hellokitty' 'isabel'     'jasmine'
+          'kida'       'lady'       'moana'      'nala'       'olivia'
+          'pocahontas' 'quinn'      'rapunzel')
+declare -A STATUS
+udl=$'\e[4m'
+red=$'\e[1;31m'
+end=$'\e[0m'
+
+# ping all hosts
+for (( i=0 ; i < "${#HOSTNAME[@]}" ; i++ )); do
+  STATUS[${HOSTNAME[i]}]=$(nc -z -w 1 ${HOSTNAME[i]}${SUFFIX} 22 2>/dev/null && echo 1 || echo 0)
+done
+
+# header
+printf "\n"
+printf "  "
+printf "${udl}%-57s${end}" "Hostname"
+
+# body
+for (( i=0 ; i < "${#HOSTNAME[@]}" ; i++ )); do
+  if [ $(($i % 5)) -eq 0 ]; then
+    printf "\n  "
+  fi
+  if [ "${STATUS[${HOSTNAME[i]}]}" -eq 0 ]; then
+    printf "${red}"
+  fi
+  printf "%-11s${end}" "${HOSTNAME[i]}"
+done
+
+# footer
+printf "\n\n"
+printf "  ${red}Red${end} means offline or abnormal.\n"
+printf "  More info: ${udl}http://anna.cs.nthu.edu.tw/status/elsa-lab.html${end}\n"
+
