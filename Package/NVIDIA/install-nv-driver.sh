@@ -5,7 +5,7 @@
 set -euo pipefail
 
 # useful variables
-DRIVER_VERSION="418.113" # CUDA Version: 10.1
+DRIVER_VERSION="440.100" # CUDA Version: 10.2
 DRIVER_INSTALLER="NVIDIA-Linux-x86_64-${DRIVER_VERSION}.run"
 DRIVER_LINK="http://us.download.nvidia.com/XFree86/Linux-x86_64/${DRIVER_VERSION}/${DRIVER_INSTALLER}"
 
