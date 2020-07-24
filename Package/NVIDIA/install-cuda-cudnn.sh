@@ -4,6 +4,9 @@
 # Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
 set -euo pipefail
 
+# change to /tmp
+cd /tmp
+
 # install function
 install () {
   CUDA_VERSION=$1
@@ -36,7 +39,7 @@ install () {
   echo "Done."
 
   # remove default symbloic link
-  sudo rm -f /usr/local/cuda
+  sudo rm /usr/local/cuda
 
   # clean up
   rm cuda.run cudnn.tgz
