@@ -7,12 +7,12 @@ set -euo pipefail
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
-# purge display manager
-sudo apt purge -y gdm3 lightdm
-
 # install Xfce desktop environment
 sudo apt update
 sudo apt install -y xfce4 xfce4-goodies
+
+# purge display manager
+sudo apt purge -y gdm3 lightdm
 
 # remove XScreenSaver, due to there is no real screen
 sudo apt purge -y xscreensaver
