@@ -51,3 +51,5 @@ sudo apt install -y python3-virtualenv \
                     python3-dev \
                     python3-tk
 
+# install package for Mujoco
+sudo apt install -y patchelf
