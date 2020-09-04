@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # Cause the script to exit on any errors
 # Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -euo pipefail
@@ -9,7 +11,7 @@ sudo -v
 
 # install Xfce desktop environment
 sudo apt update
-DEBIAN_FRONTEND=noninteractive sudo apt install -y xfce4 xfce4-goodies
+sudo apt install -y xfce4 xfce4-goodies
 
 # purge display manager
 sudo apt purge -y gdm3 lightdm
