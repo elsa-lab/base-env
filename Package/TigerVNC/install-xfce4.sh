@@ -11,7 +11,7 @@ sudo -v
 
 # install Xfce desktop environment
 sudo apt update
-sudo apt install -y xfce4 xfce4-goodies
+sudo apt install -y --no-install-recommends xfce4 xfce4-goodies
 
 # purge display manager
 sudo apt purge -y gdm3 lightdm
