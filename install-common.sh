@@ -76,7 +76,6 @@ sudo chmod +x ${MOTD_PATH}/98-fsck-at-reboot
 sudo chmod +x ${MOTD_PATH}/98-reboot-required
 
 sudo ln -fns $(pwd)/motd/fest-welcome ${MOTD_PATH}/02-fest-welcome
-sudo ln -fns $(pwd)/motd/festival ${MOTD_PATH}/festival
 sudo ln -fns $(pwd)/motd/landscape-sysinfo ${MOTD_PATH}/50-landscape-sysinfo
 sudo ln -fns $(pwd)/server_status/hdd-status ${MOTD_PATH}/51-hdd-status
 sudo ln -fns $(pwd)/server_status/gpu-status ${MOTD_PATH}/52-gpu-status
