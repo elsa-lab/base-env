@@ -1,0 +1,13 @@
+#!/bin/bash
+d=`date +%m%d`
+motd_dir=/opt/base-env/Script/motd
+fest_dir=$motd_dir/festival
+
+if [[ $d -ge 1220 && $d -le 1226 ]]; then
+	bash $fest_dir/1225-*
+elif [[ $d -ge 1228 || $d == 0101 ]]; then
+	bash $fest_dir/0101-*
+elif [[ $d -eq 0214 ]]; then
+	bash $fest_dir/0214-*
+fi
+

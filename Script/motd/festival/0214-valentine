@@ -1,0 +1,16 @@
+#!/bin/bash
+# -----------------------------------------------------------------
+#                        Valentine (2/14)
+# [C] http://chris.com/ascii/index.php?art=holiday/valentine
+# [R] https://github.com/BassyKuo/WelcomeMsg
+# -----------------------------------------------------------------
+countdown=$((0214-`date +%m%d`))
+date=`date +%Y.%m.%d`
+
+echo -n -e "
+  \e[38;5;199m  ,d88b.d88b,                  \e[38;5;199m  ,d88b.d88b, 
+  \e[38;5;199m  88888888888   \e[38;5;227mHappy Birthday \e[38;5;199m  88888888888 
+  \e[38;5;199m  \`Y8888888Y'  \e[38;5;227m      to        \e[38;5;199m  \`Y8888888Y'
+  \e[38;5;199m    \`Y888Y'        \e[4;38;5;214mC.Y.Lee\e[0m     \e[38;5;199m    \`Y888Y'
+  \e[38;5;199m      \`Y'                      \e[38;5;199m      \`Y' \e[0m
+"
