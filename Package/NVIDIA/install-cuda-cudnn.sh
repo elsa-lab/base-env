@@ -58,6 +58,9 @@ install "10.1" "7.6.0" \
 install "10.2" "7.6.5" \
   "http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run" \
   "http://developer.download.nvidia.com/compute/redist/cudnn/v7.6.5/cudnn-10.2-linux-x64-v7.6.5.32.tgz"
+install "11.0" "8.0.4" \
+  "http://developer.download.nvidia.com/compute/cuda/11.0.2/local_installers/cuda_11.0.2_450.51.05_linux.run" \
+  "http://developer.download.nvidia.com/compute/redist/cudnn/v8.0.4/cudnn-11.0-linux-x64-v8.0.4.30.tgz"
 
 # default use cuda-10.1
 ln -fns /usr/local/cuda-10.1 ~/.cuda
