@@ -8,7 +8,7 @@ set -euo pipefail
 cd /tmp
 
 # useful variables
-DRIVER_VERSION="460.32.03" # CUDA Version: 11.2
+DRIVER_VERSION="455.23.04" # CUDA Version: 11.2
 DRIVER_INSTALLER="NVIDIA-Linux-x86_64-${DRIVER_VERSION}.run"
 DRIVER_LINK="http://us.download.nvidia.com/XFree86/Linux-x86_64/${DRIVER_VERSION}/${DRIVER_INSTALLER}"
 
