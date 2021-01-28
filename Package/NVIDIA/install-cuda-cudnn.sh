@@ -63,6 +63,6 @@ install "11.0" "8.0.4" \
   "http://developer.download.nvidia.com/compute/redist/cudnn/v8.0.4/cudnn-11.0-linux-x64-v8.0.4.30.tgz"
 
 # default use cuda-10.1
-ln -fns /usr/local/cuda-10.1 ~/.cuda
-sudo ln -fns /usr/local/cuda-10.1 /etc/skel/.cuda
+ln -fns /usr/local/cuda-11.0 ~/.cuda
+sudo ln -fns /usr/local/cuda-11.0 /etc/skel/.cuda
 
