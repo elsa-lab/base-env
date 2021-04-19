@@ -86,8 +86,7 @@ To switch version of CUDA, please use the following command:
 ```bash 
 $ chcuda CUDA_VERSION
 ```
-> TODO: add link to the cuda env variable page.
-Please replace `CUDA_VERSION` with the CUDA release that fits you needs. Note that supported CUDA versions are documented [here]().
+Please replace `CUDA_VERSION` with the CUDA release that fits you needs. Please check [here](./installed-pkg.md#cuda-and-corresponding-cudnn-packages) for the list of supported CUDA versions and their corresponding cuDNN versions. Also, some cuda related environmental variable can be found [here](./env-vars.md#cuda-related-variables)
 
 # Check Recently Banned IPs
 
@@ -95,7 +94,7 @@ To check what are the recently banned IPs, please use the command:
 ```bash
 $ ssh-banner-short
 ```
-This command will return, for each of the five most recently banning evnets, the
+This command will return, for each of the three most recent banning events, the
 1. Time of the ban(`Time`)
 
 2. Reason of the ban(`Event`)
@@ -108,7 +107,7 @@ The image below is an example of the returned table of the command `ssh-banner-s
 
 <div style="text-align:center"><img src="_image/command/ssh-banner-short.png"></div>
 
-**Reminder: if you enter your password incorrectly three times in one ssh connection request, and if you are not under NTHU IP address(140.114.XXX.XXX), your IP address will be banned by our server. <font color=red>If you have you IP address banned by accident, pleas contact our IT personnel.</font>**
+**Reminder: if you enter your password incorrectly three times in one ssh connection request, and you are not under NTHU IP address(140.114.XXX.XXX), your IP address will be banned by our server. <font color=red>If you have your IP address banned by accident, pleas contact our IT personnel.</font>**
 
 
 # Check System Load And Memory Usage Quickly

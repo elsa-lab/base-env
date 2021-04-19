@@ -36,7 +36,7 @@ The steps to setup the client environment is different for macOS and Windows, so
 
 1. Open **Screen Sharing**
 
-    On your computer, hit <kbd>⌘</kbd>+ <kbd>space</kbd> to open Spotlight Search. And type in "Screen Sharing" and hit <kbd>Enter</kbd> to open the built-in screen sharing app.
+    On your computer, hit <kbd>⌘</kbd>+ <kbd>space</kbd> or click on the magnifier icon in you top panel to open Spotlight Search. And type in "Screen Sharing" and hit <kbd>Enter</kbd> to open the built-in screen sharing app.
     
     <div style="text-align:center"><img src="_image/vnc/spotlight.png"></div>
 
