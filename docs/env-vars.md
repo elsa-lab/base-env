@@ -14,7 +14,7 @@ This variable provides the path to the CUDA toolchain for all CUDA programs. By 
 
 ## CUDA_VISIBLE_DEVICES
 
-This variable specifies which GPU device can be used by user program. The default value of this variable is set to `0`, implying that the only GPU that can be used by any user program is GPU0. Currently, ELSA lab's compuatational platform supports up to 3 GPU devices. To select the GPU to run you program on, please set the value of this variable to either 0, 1, or 2 (if available).  
+This variable specifies which GPU device can be used by user program. The default value of this variable is set to `0`, implying that the only GPU that can be used by any user program is GPU0. Currently, ELSA Lab's compuatational platform supports up to 3 GPU devices. To select the GPU to run you program on, please set the value of this variable to either 0, 1, or 2 (if available).  
 
 # Tensorflow Relate Variables
 

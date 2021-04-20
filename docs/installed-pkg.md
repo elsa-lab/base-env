@@ -1,8 +1,8 @@
 # Installed Packages
 
-In this section, some preinstalled package on ELSA lab's computational platform is introduced.
+In this section, some preinstalled package on ELSA Lab's computational platform is introduced.
 
-# CUDA and Corresponding CuDNN Packages
+# CUDA and Corresponding cuDNN Packages
 
 Currently, some versions of CUDA are supported on ELSA Lab's computational platform. The following is a list of supported CUDA versions and their corresponding cuDNN versions.
 
