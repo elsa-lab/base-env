@@ -30,7 +30,7 @@ fi
 
 # install NVIDIA driver
 printf "Installing NVIDIA driver ${DRIVER_VERSION}... "
-sudo ./"${DRIVER_INSTALLER}" --silent --dkms --no-opengl-files
+sudo ./"${DRIVER_INSTALLER}" --silent --dkms --run-nvidia-xconfig
 echo "Done."
 
 # enable persistence mode
