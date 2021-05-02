@@ -51,7 +51,7 @@ The steps to setup the client environment is different for macOS and Windows, so
 3. Enter Password
 
     After hitting the "connect" button, you will be prompted to enter the connection password. Please copy and paste the random password generated in the second step of server setup. Then hit enter.
-        <div style="text-align:center"><img src="_image/vnc/passwd.png"></div>
+    <div style="text-align:center"><img src="_image/vnc/passwd.png"></div>
 
 4. Done
 
