@@ -69,5 +69,6 @@ install "11.2.2" "8.1.1" \
   "http://developer.download.nvidia.com/compute/redist/cudnn/v8.1.1/cudnn-11.2-linux-x64-v8.1.1.33.tgz"
 
 # default use cuda-11.1
-ln -fns /usr/local/cuda-11.1 ~/.cuda
-sudo ln -fns /usr/local/cuda-11.1 /etc/skel/.cuda
+ln -fns /usr/local/cuda-11.2 ~/.cuda
+sudo ln -fns /usr/local/cuda-11.2 /etc/skel/.cuda
+

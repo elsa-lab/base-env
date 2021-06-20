@@ -10,7 +10,7 @@ sudo -v
 # update apt repo
 sudo apt update
 
-# install monitoring tools
+# monitoring tools
 sudo apt install -y smartmontools \
                     htop \
                     iotop \
@@ -18,7 +18,7 @@ sudo apt install -y smartmontools \
                     smem \
                     earlyoom
 
-# install common used apps
+# commonly used apps
 sudo apt install -y dkms \
                     build-essential \
                     cmake \
@@ -32,7 +32,7 @@ sudo apt install -y dkms \
                     ppa-purge \
                     apt-file
 
-# install common used libraries
+# commonly used libraries
 sudo apt install -y ffmpeg \
                     libopencv-dev \
                     libosmesa6-dev \
@@ -46,10 +46,8 @@ sudo apt install -y ffmpeg \
                     libsdl-gfx1.2-dev \
                     libsdl-image1.2-dev
 
-# install python3 related libraries
+# python3 related libraries
 sudo apt install -y python3-virtualenv \
                     python3-dev \
                     python3-tk
 
-# install package for Mujoco
-sudo apt install -y patchelf

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Cause the script to exit on any errors
-# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+# Reference:
+# https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -euo pipefail
 
 # extends the sudo timeout for another 15 minutes
@@ -19,6 +20,3 @@ sudo systemctl enable --now docker
 # add current user to docker group
 sudo usermod -aG docker ${USER}
 
-# install docker-compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose

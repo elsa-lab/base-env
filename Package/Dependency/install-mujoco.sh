@@ -14,6 +14,12 @@ LINK_POSTFIX="_linux.zip"
 MJ_PATH="/usr/local/mujoco"
 TEMP_PATH="/tmp/mujoco-$(date | md5sum | awk '{print $1}')"
 
+# extends the sudo timeout for another 15 minutes
+sudo -v
+
+# install dependency for mujoco-py
+sudo apt install -y patchelf
+
 # change directory to TEMP_PATH
 mkdir -p "${TEMP_PATH}"
 cd "${TEMP_PATH}"
@@ -54,7 +60,3 @@ sudo ln -fsn "${MJ_PATH}" "/etc/skel/.mujoco"
 # clean up
 cd && rm -rf "${TEMP_PATH}"
 
-# install PatchELF (for mujoco-py)
-# sudo add-apt-repository -y ppa:jamesh/snap-support
-# sudo apt-get update
-# sudo apt-get install -y patchelf
