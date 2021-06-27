@@ -18,3 +18,7 @@ sudo apt update
 # install nvidia-doceker and restart docker
 sudo apt install -y nvidia-docker2 nvidia-container-toolkit 
 sudo systemctl restart docker
+
+# Change the user who execute nvidia-container-toolkit
+# Reference: https://askubuntu.com/a/1319123
+sudo sed -i '/user/s/^#//g' /etc/nvidia-container-runtime/config.toml
