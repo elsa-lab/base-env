@@ -14,7 +14,7 @@ sudo apt update
 sudo apt install -y --no-install-recommends xfce4 xfce4-goodies
 
 # purge display manager
-sudo apt purge -y gdm3 lightdm
+sudo apt purge -y gdm3
 
 # remove XScreenSaver, due to there is no real screen
 sudo apt purge -y xscreensaver
