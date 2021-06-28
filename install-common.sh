@@ -87,7 +87,7 @@ cd ${INSTALL_PATH}/Package
 # VirtualGL
 #-----------------------------------------------------------
 
-./Dependency/install-virtualgl.sh
+# ./Dependency/install-virtualgl.sh
 
 #=====================================================================
 # Part II: Script
