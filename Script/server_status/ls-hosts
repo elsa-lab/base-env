@@ -8,7 +8,7 @@ SUFFIX=".cs.nthu.edu.tw"
 HOSTNAME=('anna'       'ariel'      'aurora'     'belle'      'elsa'
           'elsa-latex' 'giselle'    'hellokitty' 'isabel'     'jasmine'
           'kida'       'lady'       'moana'      'nala'       'olivia'
-          'pocahontas' 'quinn'      'rapunzel')
+          'pocahontas' 'quinn'      'rapunzel'   'snowwhite' )
 declare -A STATUS
 udl=$'\e[4m'
 red=$'\e[1;31m'
