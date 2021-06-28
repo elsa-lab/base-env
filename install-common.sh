@@ -8,7 +8,7 @@
 #
 # Reference:
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -u pipefail
+set -u
 
 REPO_LINK="https://github.com/elsa-lab/base-env"
 INSTALL_PATH="/opt/base-env"
