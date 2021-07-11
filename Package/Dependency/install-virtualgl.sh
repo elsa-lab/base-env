@@ -25,4 +25,7 @@ sudo usermod -aG vglusers root
 # restart display manager
 sudo service lightdm restart
 
+# disable suspend and hibernation modes 
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
 echo -e "\e[5m\e[1mReboot required.\e[0m"
