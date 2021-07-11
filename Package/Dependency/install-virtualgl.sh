@@ -20,7 +20,7 @@ sudo dpkg -i /tmp/virtualgl.deb
 sudo vglserver_config -config
 
 # add users for accessing vglserver
-sudo usermod -aG root vglusers
+sudo usermod -aG vglusers root
 
 # restart display manager
 sudo service lightdm restart
