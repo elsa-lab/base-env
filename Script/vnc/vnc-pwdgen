@@ -2,7 +2,7 @@
 
 BF="\033[1m"
 CC="\033[0m"
-PW=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+PW=$(shuf -zer -n8  {A..Z} {a..z} {0..9})
 
 printf "Random Generated VNC Password: ${BF}${PW}${CC}\n"
 
