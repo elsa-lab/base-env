@@ -2,7 +2,7 @@
 
 BF="\033[1m"
 CC="\033[0m"
-PW=$(shuf -zer -n8  {A..Z} {a..z} {0..9})
+PW=$(shuf -zer -n8 {A..Z} {a..z} {0..9} | tr -d '\0')
 
 printf "Random Generated VNC Password: ${BF}${PW}${CC}\n"
 
