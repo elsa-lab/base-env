@@ -21,8 +21,9 @@ curl -sSL "${DRIVER_LINK}" -o "${DRIVER_INSTALLER}"
 chmod +x "${DRIVER_INSTALLER}"
 echo "Done."
 
-# stop lightdm
-if service --status-all | grep -Fq 'lightdm'; then
+#stop lightdm
+services=$(service --status-all | grep '+' || true)
+if echo $services | grep -Fq 'lightdm'; then
   printf "Stopping lightdm... "
   sudo service lightdm stop
   echo "Done."
