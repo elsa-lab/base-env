@@ -31,6 +31,7 @@ printf "${RESET}"
 printf "\n"
 
 echo "${GPU_INFO}" | while IFS=',' read -a line; do
+  line[2]=${line[2]/NVIDIA /} # remove NVIDIA from GPU Name
   printf "  "
   printf "${GPU_ARG}" "${line[1]}"
   printf "${NAME_ARG}" "${line[2]:1}"
