@@ -63,7 +63,18 @@ $defaultXStartup
     = ("#!/bin/sh\n\n".
        "unset SESSION_MANAGER\n".
        "unset DBUS_SESSION_BUS_ADDRESS\n".
-       "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games startxfce4 &\n");
+       "\n# Workaround for Anaconda: excluding bin from anaconda\n".
+       "if [ ! -z \${CONDA_EXE+x} ]; then\n".
+       "  CONDA_BIN=\$(dirname \${CONDA_EXE})\n".
+       "  mv \${CONDA_BIN} \${CONDA_BIN}.workaround\n".
+       "fi\n\n".
+       "startxfce4 &\n".
+       "\n# Workaround for Anaconda: recovering bin from anaconda\n".
+       "if [ ! -z \${CONDA_EXE+x} ]; then\n".
+       "  sleep 30\n".
+       "  CONDA_BIN=\$(dirname \${CONDA_EXE})\n".
+       "  mv \${CONDA_BIN}.workaround \${CONDA_BIN}\n".
+       "fi\n");
 
 $defaultConfig
     = ("## Supported server options to pass to vncserver upon invocation can be listed\n".
