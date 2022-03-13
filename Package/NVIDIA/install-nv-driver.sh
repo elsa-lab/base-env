@@ -31,7 +31,7 @@ fi
 
 # install NVIDIA driver
 printf "Installing NVIDIA driver ${DRIVER_VERSION}... "
-sudo ./"${DRIVER_INSTALLER}" --silent --dkms
+sudo ./"${DRIVER_INSTALLER}" --silent --dkms --no-cc-version-check
 echo "Done."
 
 # enable persistence mode
