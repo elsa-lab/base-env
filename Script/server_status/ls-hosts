@@ -5,10 +5,11 @@ set -euo pipefail
 
 # useful variables
 SUFFIX=".cs.nthu.edu.tw"
-HOSTNAME=('anna'       'ariel'      'aurora'     'belle'      'elsa'
-          'elsa-latex' 'giselle'    'hellokitty' 'isabel'     'jasmine'
-          'kida'       'lady'       'moana'      'nala'       'olivia'
-          'pocahontas' 'quinn'      'rapunzel'   'snowwhite'  'tiana')
+HOSTNAME=('anna'       'ariel'      'aurora'     'alice'      'belle'    
+       	  'elsa'       'elsa-latex' 'giselle'    'hellokitty' 'isabel'     
+	  'jasmine'    'kida'       'lady'       'moana'      'nala'       
+	  'olivia'     'pocahontas' 'quinn'      'rapunzel'   'snowwhite'  
+	  'tiana'      'umbreon'    'vanellope')
 declare -A STATUS
 udl=$'\e[4m'
 red=$'\e[1;31m'
