@@ -20,6 +20,9 @@ sudo adduser ${STUDENT} \
   --gecos "First Last,RoomNumber,WorkPhone,HomePhone" \
   --disabled-password
 echo "${STUDENT}:${PASSWD}" | sudo chpasswd
+if grep -q vglusers /etc/group; then
+  sudo usermod -aG vglusers ${STUDENT}
+fi
 sudo mkdir /warehouse/${STUDENT}
 sudo chmod 700 /warehouse/${STUDENT}
 sudo mkdir /home/${STUDENT}/Warehouse
