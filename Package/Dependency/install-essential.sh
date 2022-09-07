@@ -30,7 +30,8 @@ sudo apt install -y dkms \
                     vim \
                     zip \
                     ppa-purge \
-                    apt-file
+                    apt-file \
+                    moutil
 
 # commonly used libraries
 sudo apt install -y ffmpeg \
