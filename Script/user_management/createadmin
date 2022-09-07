@@ -21,6 +21,11 @@ sudo adduser ${ADMIN} \
   --disabled-password
 sudo usermod -aG sudo ${ADMIN}
 echo "${ADMIN}:${PASSWD}" | sudo chpasswd
+
+if grep -q vglusers /etc/group; then
+  sudo usermod -aG vglusers ${ADMIN}
+fi
+
 sudo mkdir /warehouse/${ADMIN}
 sudo chmod 700 /warehouse/${ADMIN}
 sudo mkdir /home/${ADMIN}/Warehouse
