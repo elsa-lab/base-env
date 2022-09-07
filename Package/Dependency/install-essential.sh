@@ -31,7 +31,7 @@ sudo apt install -y dkms \
                     zip \
                     ppa-purge \
                     apt-file \
-                    moutil
+                    mokutil
 
 # commonly used libraries
 sudo apt install -y ffmpeg \
