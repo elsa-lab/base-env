@@ -15,6 +15,17 @@ DRIVER_LINK="http://us.download.nvidia.com/XFree86/Linux-x86_64/${DRIVER_VERSION
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
+# check whether secure boot status for driver installation
+check_secure_boot_status () {
+  if sudo dmidecode -t 2 | grep -q "ASUSTeK"; then
+    if sudo mokutil --sb-state | grep -q "enabled"; then
+      echo "Please Disable Secure Boot for ASUS Motherboard"
+      return 1
+    fi
+  fi
+}
+
+check_secure_boot_status
 # download installer
 printf "Downlodaing NVIDIA driver ${DRIVER_VERSION} installer... "
 curl -sSL "${DRIVER_LINK}" -o "${DRIVER_INSTALLER}"
