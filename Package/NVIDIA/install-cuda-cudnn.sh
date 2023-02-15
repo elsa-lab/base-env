@@ -68,7 +68,53 @@ install "11.2.2" "8.1.1" \
   "https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda_11.2.2_460.32.03_linux.run" \
   "http://developer.download.nvidia.com/compute/redist/cudnn/v8.1.1/cudnn-11.2-linux-x64-v8.1.1.33.tgz"
 
-# default use cuda-11.1
+# install cuda >= 11.3
+install_new() {
+  CUDA_VERSION=$1
+  CUDNN_VERSION=$2
+  CUDA_LINK=$3
+  CUDNN_LINK=$4
+
+  # download cuda installer
+  printf "Downlodaing CUDA ${CUDA_VERSION} installer... "
+  curl -sSL "${CUDA_LINK}" -o cuda.run
+  chmod +x cuda.run
+  echo "Done."
+
+  # download cudnn tar.xz
+  printf "Downlodaing cuDNN ${CUDNN_VERSION} installer... "
+  curl -sSL "${CUDNN_LINK}" -o cudnn.tar.xz
+  echo "Done."
+
+  sudo -v
+
+  printf "Installing CUDA ${CUDA_VERSION}..."
+  sudo ./cuda.run --silent --toolkit --override
+  echo "Done."
+
+  # follow the instructions from https://docs.nvidia.com/deplearning/cudnn/install-guide/index.html#installlinux-tar
+  printf "Installing cuDNN ${CUDNN_VERSION}..."
+  sudo tar --no-same-owner -xf cudnn.tar.xz
+  sudo cp cudnn-*-archive/include/cudnn*.h /usr/local/cuda/include
+  sudo cp -P cudnn-*-archive/lib/libcudnn* /usr/local/cuda/lib64
+  sudo chmod a+r /usr/local/cuda/include/cudnn*.h /usr/local/cuda/lib64/libcudnn*
+  echo "Done."
+
+  sudo rm /usr/local/cuda
+  sudo rm cuda.run cudnn.tar.xz
+  sudo rm -r cudnn-*-archive
+}
+
+install_new "11.3" "8.7.0" \
+  "https://developer.download.nvidia.com/compute/cuda/11.3.1/local_installers/cuda_11.3.1_465.19.01_linux.run" \
+  "https://developer.download.nvidia.com/compute/redist/cudnn/v8.7.0/local_installers/11.8/cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz"
+
+install_new "11.6" "8.7.0" \
+  "https://developer.download.nvidia.com/compute/cuda/11.6.2/local_installers/cuda_11.6.2_510.47.03_linux.run" \
+  "https://developer.download.nvidia.com/compute/redist/cudnn/v8.7.0/local_installers/11.8/cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz"
+
+
+# default use cuda-11.2
 ln -fns /usr/local/cuda-11.2 ~/.cuda
 sudo ln -fns /usr/local/cuda-11.2 /etc/skel/.cuda
 
