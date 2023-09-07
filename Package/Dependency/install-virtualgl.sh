@@ -5,7 +5,7 @@
 set -euo pipefail
 
 # download VirtualGL
-curl -sSL https://sourceforge.net/projects/virtualgl/files/2.6.5/virtualgl_2.6.5_amd64.deb/download -o /tmp/virtualgl.deb
+# curl -sSL https://sourceforge.net/projects/virtualgl/files/2.6.5/virtualgl_2.6.5_amd64.deb/download -o /tmp/virtualgl.deb
 
 # create an appropriate xorg.conf file for headless operation
 sudo nvidia-xconfig -a --allow-empty-initial-configuration --virtual=1920x1200
@@ -14,7 +14,7 @@ sudo nvidia-xconfig -a --allow-empty-initial-configuration --virtual=1920x1200
 sudo apt install lightdm -y
 
 # install VirtualGL
-sudo dpkg -i /tmp/virtualgl.deb
+sudo dpkg -i /opt/base-env/Package/Archives/virtualgl_2.6.5_amd64.deb
 
 # configure VirtualGL
 sudo vglserver_config -config
