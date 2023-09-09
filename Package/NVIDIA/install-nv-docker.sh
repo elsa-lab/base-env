@@ -21,4 +21,4 @@ sudo systemctl restart docker
 
 # Change the user who execute nvidia-container-toolkit
 # Reference: https://askubuntu.com/a/1319123
-sudo sed -i '/user/s/^#//g' /etc/nvidia-container-runtime/config.toml
+sudo sed -i 's/^#user.*/user = "root:vglusers"/' /etc/nvidia-container-runtime/config.toml
