@@ -28,4 +28,9 @@ sudo service lightdm restart
 # disable suspend and hibernation modes 
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 
+# Let NVIDIA Container CLI knows how to access the GPUs with the correct UID:GID
+if [ -e /etc/nvidia-container-runtime/config.toml ]; then
+  sudo sed -i 's/^#user.*/user = "root:vglusers"/' /etc/nvidia-container-runtime/config.toml
+fi
+
 echo -e "\e[5m\e[1mReboot required.\e[0m"
