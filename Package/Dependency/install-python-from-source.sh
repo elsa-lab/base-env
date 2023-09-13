@@ -42,5 +42,5 @@ echo "Cleaning up"
 rm -rf ${TEMP_DIR}
 
 echo "${PY_NAME} is installed in ${PY_INSTALL_DIR}"
-echo "Please crete a virtual environment with the following command:"
+echo "Please create a virtual environment with the following command:"
 echo "    ${PY_EXE} -m virtualenv -p ${PY_EXE} ENV_NAME"
