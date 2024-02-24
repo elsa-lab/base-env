@@ -106,9 +106,9 @@ for s in $(ls -A -I profile.d); do
   done
 done
 
-# VNC starting script should be in /usr/bin (same path of Xvnc)
-sudo ln -fns $(pwd)/vnc/vncserver /usr/bin/vncserver
-sudo rm /usr/local/bin/vncserver
+# VNC starting script shall be in the same path of Xvnc and vncpasswd
+sudo ln -fns /usr/bin/Xvnc /usr/local/bin/Xvnc
+sudo ln -fns /usr/bin/vncpasswd /usr/local/bin/vncpasswd
 
 #-----------------------------------------------------------
 # profile.d
