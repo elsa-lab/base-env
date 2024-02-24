@@ -106,9 +106,10 @@ for s in $(ls -A -I profile.d); do
   done
 done
 
-# VNC starting script shall be in the same path of Xvnc and vncpasswd
-# using /usr/local/bin/vncserver to provide /usr/bin/vncserver (vncserver) in auto mode
-sudo update-alternatives --install /usr/bin/vncserver vncserver /usr/local/bin/vncserver 90
+# VNC starting script shall be in the same path of Xvnc and vncpasswd (i.e., /usr/bin)
+sudo rm /usr/local/bin/vncserver
+# using ${INSTALL_PATH}/Script/vnc/vncserver to provide /usr/bin/vncserver (vncserver) in auto mode
+sudo update-alternatives --install /usr/bin/vncserver vncserver ${INSTALL_PATH}/Script/vnc/vncserver 90
 
 #-----------------------------------------------------------
 # profile.d
