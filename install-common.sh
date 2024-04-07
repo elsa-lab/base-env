@@ -35,6 +35,10 @@ chmod 700 ${HOME}
 # http://manpages.ubuntu.com/manpages/focal/man1/timedatectl.1.html
 sudo timedatectl set-timezone Asia/Taipei
 
+# Generate keys for the elsa server to download installers
+ssh-keygen -f ~/.ssh/elsa-server
+ssh-copy-id -i ~/.ssh/elsa-server elsa.cs.nthu.edu.tw
+
 ################################################################################
 # Installation
 ################################################################################
