@@ -7,7 +7,7 @@ set -euo pipefail
 # extends the sudo timeout for another 15 minutes
 sudo -v
 
-# disable default video driver
+# disable default video driver, and disable hardware-based iommu
 sudo sed -i \
   's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="nomodeset,iommu=soft"/g' \
   /etc/default/grub
