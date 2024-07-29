@@ -54,7 +54,7 @@ function nvidia_info ()
 function gpu_name () 
 {
   local GID=$(printf "%016x\n" $1)
-  ${INFO} | awk -v gid=$GID '$0~gid {getline;print}' | { IFS=':' read -a line; printf "%s" "${line[1]}"; } | xargs
+  ${INFO} | awk -v gid=$GID '$0~gid {getline;print}' | { IFS=':' read -a line; echo ${line[1]}; }
 }
 
 function amd_info ()
@@ -81,23 +81,28 @@ function amd_info ()
       continue
     fi
   
+    GUID=${COL["Unique ID"]}
+    UTIL=${COL["GPU use (%)"]}
+    MEM_USED=${COL["VRAM Total Used Memory (B)"]}
+    MEM_TOT=${COL["VRAM Total Memory (B)"]}
+
     line[0]=${line[0]/card/}
-    line[${COL["Unique ID"]}]=$(gpu_name ${line[${COL["Unique ID"]}]})
-    line[${COL["Unique ID"]}]=${line[${COL["Unique ID"]}]/AMD /}
-    line[${COL["VRAM Total Used Memory (B)"]}]=$(( ${line[${COL["VRAM Total Used Memory (B)"]}]} / 1024 / 1024 ))
-    line[${COL["VRAM Total Memory (B)"]}]=$(( ${line[${COL["VRAM Total Memory (B)"]}]} / 1024 / 1024 ))
+    line[${GUID}]=$(gpu_name ${line[${GUID}]})
+    line[${GUID}]=${line[${GUID}]/AMD /}
+    line[${MEM_USED}]=$(( ${line[${MEM_USED}]} / 1024 / 1024 ))
+    line[${MEM_TOT}]=$(( ${line[${MEM_TOT}]} / 1024 / 1024 ))
     
     printf "  "
     printf "${GPU_ARG}" "${line[0]}"
-    printf "${NAME_ARG}" "${line[ ${COL["Unique ID"]} ]}"
-    if [ "${line[ ${COL["GPU use (%)"]} ]}" -gt 85 ]; then
+    printf "${NAME_ARG}" "${line[ ${GUID} ]}"
+    if [ "${line[ ${UTIL} ]}" -gt 85 ]; then
       printf "${RED}"
     else
       printf "${GREEN}"
     fi
-    printf "${UTIL_ARG}${RESET}" "${line[ ${COL["GPU use (%)"]} ]}%"
-    printf "${MEM_ARG}" "${line[ ${COL["VRAM Total Used Memory (B)"]} ]}M"
-    printf "${MEM_ARG}" "${line[ ${COL["VRAM Total Memory (B)"]} ]}M"
+    printf "${UTIL_ARG}${RESET}" "${line[ ${UTIL} ]}%"
+    printf "${MEM_ARG}" "${line[ ${MEM_USED} ]}M"
+    printf "${MEM_ARG}" "${line[ ${MEM_TOT} ]}M"
     uuid="${line[0]}"
     echo "${PROCESSES}" | grep "${uuid}" | wc -l
   done
