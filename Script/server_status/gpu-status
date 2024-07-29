@@ -64,6 +64,7 @@ function amd_info ()
   Q_GPU="--showuse --showmeminfo vram --showuniqueid --csv"
   SKIP_TAIL="head -n -1"
   GPU_INFO=$(${SMI} ${Q_GPU} | ${SKIP_TAIL})
+  PROCESSES=$(${SMI} --showpidgpus | grep -v PID)
   
   FIRST=1
   declare -A COL
@@ -97,7 +98,8 @@ function amd_info ()
     printf "${UTIL_ARG}${RESET}" "${line[ ${COL["GPU use (%)"]} ]}%"
     printf "${MEM_ARG}" "${line[ ${COL["VRAM Total Used Memory (B)"]} ]}M"
     printf "${MEM_ARG}" "${line[ ${COL["VRAM Total Memory (B)"]} ]}M"
-    echo "N/A"
+    uuid="${line[0]}"
+    echo "${PROCESSES}" | grep "${uuid}" | wc -l
   done
 }
 
