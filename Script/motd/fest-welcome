@@ -5,9 +5,9 @@ fest_dir=$motd_dir/festival
 
 if [[ 10#$d -ge 1220 && 10#$d -le 1226 ]]; then
 	bash $fest_dir/1225-*
-elif [[ 10#$d -ge 1228 || 10#$d == "0101" ]]; then
+elif [[ 10#$d -ge 1228 || 10#$d -eq 10#0101 ]]; then
 	bash $fest_dir/0101-*
-elif [[ 10#$d == "0214" ]]; then
+elif [[ 10#$d -eq 10#0214 ]]; then
 	bash $fest_dir/0214-*
 fi
 
