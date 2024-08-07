@@ -111,3 +111,4 @@ function amd_info ()
 type nvidia-smi &> /dev/null && nvidia_info
 type rocm-smi &> /dev/null && amd_info
 
+exit 0
