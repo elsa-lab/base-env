@@ -10,19 +10,14 @@ if [ $# -eq 0 ]; then
 fi
 
 VERSION=$1
-PREFIX="cuda-"
-SOURCE="/usr/local/${PREFIX}${VERSION}"
-  
+PREFIX="/usr/local/cuda-"
+SOURCE="${PREFIX}${VERSION}"
+CUDA_LIST="$(ls -d ${PREFIX}* | xargs)"
+
 if [ ! -d "${SOURCE}" ]; then
-  echo "Info: $1 is an invalid version of CUDA"   
+  echo "Info: $1 is an invalid version of CUDA"
   echo "Usage: $(basename $0) <available version of CUDA>"
-  echo -n "       (available versions:"
-  for d in $(ls /usr/local); do
-    if [[ "${d}" == ${PREFIX}* ]]; then
-      echo -n "  ${d#${PREFIX}}"
-    fi
-  done
-  echo ")"
+  echo "       (available versions: ${CUDA_LIST//"${PREFIX}"}"
 else
   ln -fns "${SOURCE}" "${CUDA_HOME}"
   echo "Info: Switch to CUDA $1"
