@@ -9,7 +9,7 @@ $ diskutil list
 $ diskutil eraseDisk FAT32 NO_NAME MBRFormat /dev/diskX
 ```
 
-### Description
+**Description**
 
 - `diskutil list`
   - List the partitions of a disk
@@ -22,7 +22,7 @@ $ diskutil eraseDisk FAT32 NO_NAME MBRFormat /dev/diskX
 $ lastlog -u 1000-
 ```
 
-### Description
+**Description**
 
 - `lastlog -u LOGIN|RANGE`
   - The users can be specified by a login name, a numerical user ID, or a RANGE of users. This RANGE of users can be specified with a min and max values (UID_MIN-UID_MAX), a max value (-UID_MAX), or a min value (UID_MIN-).
@@ -33,7 +33,7 @@ $ lastlog -u 1000-
 $ sudo smem -ukr | column -t
 ```
 
-### Description
+**Description**
 - `smem -u`
   - Report memory usage by user.
 - `smem -k`
@@ -52,7 +52,7 @@ $ for dir in $(ls -A); do
 > done | sort -rh
 ```
 
-### Description
+**Description**
 
 - `ls -A`
   - Do not list implied `.` and `..`.
