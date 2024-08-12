@@ -17,7 +17,7 @@ CUDA_LIST="$(ls -d ${PREFIX}* | xargs)"
 if [ ! -d "${SOURCE}" ]; then
   echo "Info: $1 is an invalid version of CUDA"
   echo "Usage: $(basename $0) <available version of CUDA>"
-  echo "       (available versions: ${CUDA_LIST//"${PREFIX}"}"
+  echo "       (available versions: ${CUDA_LIST//"${PREFIX}"})"
 else
   ln -fns "${SOURCE}" "${CUDA_HOME}"
   echo "Info: Switch to CUDA $1"
