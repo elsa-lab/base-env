@@ -1,4 +1,53 @@
-# Useful Links (WIP)
+# Useful Links
+
+## System Builder
+
+- [CoolPC](https://www.coolpc.com.tw/evaluate.php)
+- [PCPartPicker](https://pcpartpicker.com/list/)
+
+## Power Supply Calculator
+
+- [OuterVision](https://outervision.com/power-supply-calculator/)
+- [CoolerMaster](https://www.coolermaster.com/en-global/power-supply-calculator/)
+
+## Ubuntu ISO
+
+- [Ubuntu](https://releases.ubuntu.com/)
+- [NCHC](http://free.nchc.org.tw/ubuntu-cd/)
+- [NCTU](http://ubuntu.cs.nctu.edu.tw/ubuntu-release/)
+
+## NVIDIA related
+
+- [Driver](https://www.nvidia.com/en-us/drivers/unix/)
+- [CUDA](https://developer.nvidia.com/cuda-toolkit-archive)
+- [CUDA Container Image Source](https://gitlab.com/nvidia/container-images/cuda/-/tree/master/dist)
+- [JetPack](https://developer.nvidia.com/embedded/jetpack)
+- [GPU configurations for TensorFlow](https://www.tensorflow.org/install/source#gpu)
+
+## ASUS related
+
+- [Q-Code Table List](http://www.asusqcodes.com/)
+- [Check Repair Status](https://www.asus.com/tw/support/repair-status-inquiry/)
+
+## Hardware Specification
+
+- [Intel](https://ark.intel.com/)
+- [AMD](https://www.amd.com/en/products/specifications)
+- [GPU](https://www.techpowerup.com/gpu-specs/)
+
+## Toolkit
+
+- [MemTest86](https://www.memtest86.com/)
+- [gpu-burn](https://github.com/wilicc/gpu-burn)
+- [Etcher](https://www.balena.io/etcher/)
+- [Rufus](https://rufus.ie/)
+
+## Benchmark and Review
+
+- [CPU-Monkey](https://www.cpu-monkey.com/en/)
+- [PassMark](https://www.passmark.com/)
+- [Phoronix](https://www.phoronix.com/)
+- [Tom's Hardware](https://www.tomshardware.com/)
 
 # Commonly Used Commands
 
