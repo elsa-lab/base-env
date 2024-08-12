@@ -1,4 +1,4 @@
-# Useful Links
+# Useful Link
 
 ## System Builder
 
@@ -10,7 +10,7 @@
 - [OuterVision](https://outervision.com/power-supply-calculator/)
 - [CoolerMaster](https://www.coolermaster.com/en-global/power-supply-calculator/)
 
-## Ubuntu ISO
+## Ubuntu Release
 
 - [Ubuntu](https://releases.ubuntu.com/)
 - [NCHC](http://free.nchc.org.tw/ubuntu-cd/)
@@ -49,7 +49,7 @@
 - [Phoronix](https://www.phoronix.com/)
 - [Tom's Hardware](https://www.tomshardware.com/)
 
-# Commonly Used Commands
+# Commonly Used Command
 
 ## Erase a USB stick and format to FAT32 (macOS)
 
