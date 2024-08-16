@@ -21,7 +21,7 @@ echo "Download the source file of ${PY_NAME}"
 wget ${PY_DOWN_LINK} > /dev/null
 
 echo "Extract the source file of ${PY_NAME}"
-tar zxf ${PY_FILE_NAME} > /dev/null
+tar Jxf ${PY_FILE_NAME} > /dev/null
 
 echo "Change directory to ${PY_SRC_DIR}"
 cd ${PY_SRC_DIR}
