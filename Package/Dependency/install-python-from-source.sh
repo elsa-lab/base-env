@@ -11,7 +11,7 @@ PY_FILE_NAME=$(basename ${PY_DOWN_LINK})
 
 TEMP_DIR=$(mktemp -d)
 PY_SRC_DIR=${TEMP_DIR}/${PY_FILE_NAME%.*}
-PY_INSTALL_DIR=$2/$1
+PY_INSTALL_DIR=$2
 PY_EXE=${PY_INSTALL_DIR}/bin/python${PY_VER%.*}
 
 echo "Change directory to ${TEMP_DIR}"
