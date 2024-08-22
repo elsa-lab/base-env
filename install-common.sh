@@ -136,9 +136,13 @@ sudo chmod +x ${MOTD_PATH}/98-reboot-required
 
 # Install customized motds
 sudo ln -fns $(pwd)/motd/fest-welcome ${MOTD_PATH}/02-fest-welcome
-sudo ln -fns ${INSTALL_PATH}/Config/landscape.conf /etc/landscape/client.conf
 sudo ln -fns $(pwd)/server_status/hdd-status ${MOTD_PATH}/51-hdd-status
 sudo ln -fns $(pwd)/server_status/gpu-status ${MOTD_PATH}/52-gpu-status
 sudo ln -fns $(pwd)/server_status/vnc-status ${MOTD_PATH}/53-vnc-status
 sudo ln -fns $(pwd)/motd/ssh-banner-short ${MOTD_PATH}/56-ssh-banner-short
 
+#-----------------------------------------------------------
+# config
+#-----------------------------------------------------------
+
+sudo ln -fns ${INSTALL_PATH}/Config/landscape.conf /etc/landscape/client.conf
