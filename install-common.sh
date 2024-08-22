@@ -71,7 +71,7 @@ cd ${INSTALL_PATH}/Package
 # Service
 ./Dependency/install-fail2ban.sh
 ./Dependency/install-hosts-monitor.sh
-./Dependency/install-netdata.sh
+# ./Dependency/install-netdata.sh
 
 #-----------------------------------------------------------
 # NVIDIA related
