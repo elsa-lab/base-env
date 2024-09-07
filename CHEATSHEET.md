@@ -38,6 +38,7 @@
 ## Toolkit
 
 - [MemTest86](https://www.memtest86.com/)
+- [cuda_memtest](https://github.com/ComputationalRadiationPhysics/cuda_memtest)
 - [gpu-burn](https://github.com/wilicc/gpu-burn)
 - [Etcher](https://www.balena.io/etcher/)
 - [Rufus](https://rufus.ie/)
