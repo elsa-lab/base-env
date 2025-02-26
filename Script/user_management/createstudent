@@ -2,6 +2,7 @@
 
 STUDENT=$1
 GROUP="student"
+OTHER_GROUPS=("vglusers" "video" "render")
 PASSWD="elsalab"
 
 if [ "${STUDENT}" = "" ]; then
@@ -20,9 +21,13 @@ sudo adduser ${STUDENT} \
   --gecos "First Last,RoomNumber,WorkPhone,HomePhone" \
   --disabled-password
 echo "${STUDENT}:${PASSWD}" | sudo chpasswd
-if grep -q vglusers /etc/group; then
-  sudo usermod -aG vglusers ${STUDENT}
-fi
+
+for OTHER_GROUP in "${OTHER_GROUPS[@]}"; do
+  if grep -q ${OTHER_GROUP} /etc/group; then
+    sudo usermod -aG $OTHER_GROUP $STUDENT
+  fi
+done
+
 sudo mkdir /warehouse/${STUDENT}
 sudo chmod 700 /warehouse/${STUDENT}
 sudo mkdir /home/${STUDENT}/Warehouse
