@@ -2,6 +2,7 @@
 
 ADMIN=$1
 GROUP="elsa-admin"
+OTHER_GROUPS=("vglusers" "video" "render")
 PASSWD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
 
 if [ "${ADMIN}" = "" ]; then
@@ -22,9 +23,11 @@ sudo adduser ${ADMIN} \
 sudo usermod -aG sudo ${ADMIN}
 echo "${ADMIN}:${PASSWD}" | sudo chpasswd
 
-if grep -q vglusers /etc/group; then
-  sudo usermod -aG vglusers ${ADMIN}
-fi
+for OTHER_GROUP in "${OTHER_GROUPS[@]}"; do
+  if grep -q ${OTHER_GROUP} /etc/group; then
+    sudo usermod -aG $OTHER_GROUP $ADMIN
+  fi
+done
 
 sudo mkdir /warehouse/${ADMIN}
 sudo chmod 700 /warehouse/${ADMIN}
