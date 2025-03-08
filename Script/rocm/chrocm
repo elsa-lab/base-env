@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Cause the script to exit on any errors
+# Reference: https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -euo pipefail
+
+if [ $# -eq 0 ]; then
+  echo "Usage: $(basename $0) <available version of ROCm>"
+  exit 1
+fi
+
+VERSION=$1
+PREFIX="/opt/rocm-"
+SOURCE="${PREFIX}${VERSION}"
+# TODO
+ROCM_LIST="$(ls -d ${PREFIX}* | xargs)"
+
+if [ ! -d "${SOURCE}" ]; then
+  echo "Info: $1 is an invalid version of ROCm"
+  echo "Usage: $(basename $0) <available version of ROCm>"
+  echo "       (available versions: ${ROCM_LIST//"${PREFIX}"})"
+else
+  ln -fns "${SOURCE}" "${ROCM_HOME}"
+  echo "Info: Switch to ROCm $1"
+fi
+
