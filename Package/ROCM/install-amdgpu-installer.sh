@@ -28,11 +28,6 @@ sudo apt install -y ./"${AMDGPU_INSTALLER}"
 sudo apt update
 echo "Done."
 
-# Install Dynamic Kernel Module Support
-# printf "Installing DKMS... "
-# sudo amdgpu-install --usecase=dkms
-# echo "Done."
-
 # Verify the kernel-mode driver installation.
 # dkms status
 

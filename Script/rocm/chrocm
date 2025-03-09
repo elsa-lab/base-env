@@ -12,7 +12,6 @@ fi
 VERSION=$1
 PREFIX="/opt/rocm-"
 SOURCE="${PREFIX}${VERSION}"
-# TODO
 ROCM_LIST="$(ls -d ${PREFIX}* | xargs)"
 
 if [ ! -d "${SOURCE}" ]; then

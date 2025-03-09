@@ -13,7 +13,7 @@ ROCM_VERS="6.3.3 6.2.4"
 
 # Add the ROCm repositories
 printf "Registering ROCm repositories ..."
-for $ROCM_VER in $ROCM_VERS; do
+for ROCM_VER in $ROCM_VERS; do
   echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/${ROCM_VER} ${UBUNTU_CODENAME} main" \
       | sudo tee --append /etc/apt/sources.list.d/rocm.list
 done
@@ -24,7 +24,7 @@ echo "Done."
 # Install ROCm
 printf "Installing ROCm ..."
 sudo apt update
-for $ROCM_VER in $ROCM_VERS; do
+for ROCM_VER in $ROCM_VERS; do
   # extends the sudo timeout for another minutes
   sudo -v 
 
