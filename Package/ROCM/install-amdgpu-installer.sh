@@ -7,13 +7,13 @@ set -euo pipefail
 # change to /tmp
 cd /tmp
 
-# useful variables$
+# useful variables
 UBUNTU_CODENAME=$(lsb_release -cs) # Ubuntu codename: noble (24.04)
 AMDGPU_VERSION="6.3.3" # ROCm Version: 6.3.3
 AMDGPU_INSTALLER="amdgpu-install_6.3.60303-1_all.deb"
 AMDGPU_LINK="https://repo.radeon.com/amdgpu-install/${AMDGPU_VERSION}/ubuntu/${UBUNTU_CODENAME}/$AMDGPU_INSTALLER"
 
-# extends the sudo timeout for another 15 minutes$
+# extends the sudo timeout for another 15 minutes
 sudo -v
 
 # Use the amdgpu-installer script from the latest ROCm release you want to install
