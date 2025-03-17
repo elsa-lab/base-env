@@ -2,7 +2,7 @@
 
 STUDENT=$1
 GROUP="student"
-OTHER_GROUPS=("vglusers" "video" "render")
+OTHER_GROUPS=("vglusers" "video" "render" "docker")
 PASSWD="elsalab"
 
 if [ "${STUDENT}" = "" ]; then
