@@ -116,8 +116,8 @@ install "12.1" "8.9.6" \
 # install "12.2" "8.9.6" \
 #   "https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda_12.2.1_535.86.10_linux.run" \
 #   "cudnn-linux-x86_64-8.9.6.50_cuda12-archive.tar.xz"
-install "12.4" "8.9.7" \
 
+install "12.4" "8.9.7" \
   "https://developer.download.nvidia.com/compute/cuda/12.4.1/local_installers/cuda_12.4.1_550.54.15_linux.run" \
   "cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz"
 
