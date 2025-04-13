@@ -31,12 +31,12 @@ function nvidia_info ()
   FORMAT=csv,noheader,nounits
   GPU_INFO=$(${SMI} --format=${FORMAT} --query-gpu=${Q_GPU})
   PROCESSES=$(${SMI} --format=${FORMAT} --query-compute-apps=${Q_COMPUTE_APPS})
-  
+
   echo "${GPU_INFO}" | while IFS=',' read -a line; do
     line[2]=${line[2]/NVIDIA /} # remove NVIDIA from GPU Name
     printf "  "
     printf "${GPU_ARG}" "${line[1]}"
-    printf "${NAME_ARG}" "${line[2]:1}"
+    printf "${NAME_ARG}" "${line[2]:1:20}"
     if [ "${line[3]}" -gt 85 ]; then
       printf "${RED}"
     else
@@ -51,7 +51,7 @@ function nvidia_info ()
 }
 
 # get the GPU Marketing Name
-function gpu_name () 
+function gpu_name ()
 {
   local GID=$(printf "%016x\n" $1)
   ${INFO} | awk -v gid=$GID '$0~gid {getline;print}' | { IFS=':' read -a line; echo ${line[1]}; }
@@ -65,22 +65,22 @@ function amd_info ()
   SKIP_TAIL="head -n -1"
   GPU_INFO=$(${SMI} ${Q_GPU} | ${SKIP_TAIL})
   PROCESSES=$(${SMI} --showpidgpus | grep -v PID)
-  
+
   FIRST=1
   declare -A COL
   echo "${GPU_INFO}" | while IFS=',' read -a line; do
     if (( FIRST )) ; then  # record the field name and index
       FIRST=0
       for (( i=0; i < ${#line[@]} ; i++ )) ; do
-  	COL[${line[$i]}]=$i
+        COL[${line[$i]}]=$i
       done
       continue
     fi
-   
+
     if [[ ${line[1]} == "N/A" ]] ; then  # skip the integrated GPU
       continue
     fi
-  
+
     GUID=${COL["Unique ID"]}
     UTIL=${COL["GPU use (%)"]}
     MEM_USED=${COL["VRAM Total Used Memory (B)"]}
@@ -91,7 +91,7 @@ function amd_info ()
     line[${GUID}]=${line[${GUID}]/AMD /}
     line[${MEM_USED}]=$(( ${line[${MEM_USED}]} / 1024 / 1024 ))
     line[${MEM_TOT}]=$(( ${line[${MEM_TOT}]} / 1024 / 1024 ))
-    
+
     printf "  "
     printf "${GPU_ARG}" "${line[0]}"
     printf "${NAME_ARG}" "${line[ ${GUID} ]}"
