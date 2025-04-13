@@ -30,6 +30,8 @@ df -h --output=target,size,avail,pcent,source  |
   grep -v : |      # remove sshfs
   grep -v docker | # remove docker
   grep -v snap |   # remove snap
+  grep -v boot |   # remove boot
+  grep -v efi |    # remove efi
   while read -a line; do
     printf "  "
     if [ "${line[3]%?}" -gt 80 ]; then
