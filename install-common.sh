@@ -130,6 +130,7 @@ done
 # Enable necessary motds
 sudo chmod -x ${MOTD_PATH}/*
 sudo chmod +x ${MOTD_PATH}/00-header
+sudo chmod +x ${MOTD_PATH}/50-landscape-sysinfo
 sudo chmod +x ${MOTD_PATH}/97-overlayroot
 sudo chmod +x ${MOTD_PATH}/98-fsck-at-reboot
 sudo chmod +x ${MOTD_PATH}/98-reboot-required
