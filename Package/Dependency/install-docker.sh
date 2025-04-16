@@ -14,7 +14,7 @@ UBUNTU_NUMBER=$(. /etc/os-release; echo $VERSION_ID) # Ubuntu release number: 24
 # uninstall old versions
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 containerd runc
 do
-  sudo apt remove $pkg
+  sudo apt remove -y $pkg
 done
 
 # install docker
@@ -33,7 +33,7 @@ echo \
 sudo apt update
 
 # Install the Docker packages
-sudo apt install \
+sudo apt install -y \
     docker-ce \
     docker-ce-cli \
     containerd.io \
