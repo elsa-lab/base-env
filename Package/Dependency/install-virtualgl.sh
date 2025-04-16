@@ -17,7 +17,7 @@ sudo apt install lightdm -y
 sudo dpkg -i /opt/base-env/Package/Archives/virtualgl_2.6.5_amd64.deb
 
 # configure VirtualGL
-sudo vglserver_config -config
+sudo vglserver_config -config +s +f
 
 # add users for accessing vglserver
 sudo usermod -aG vglusers root
