@@ -12,9 +12,9 @@ UBUNTU_CODENAME=$(. /etc/os-release; echo $VERSION_CODENAME) # Ubuntu codename: 
 UBUNTU_NUMBER=$(. /etc/os-release; echo $VERSION_ID) # Ubuntu release number: 24.04 (noble)$
 
 # uninstall old versions
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 containerd runc;
-do 
-  sudo apt remove $pkg;
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 containerd runc
+do
+  sudo apt remove $pkg
 done
 
 # install docker

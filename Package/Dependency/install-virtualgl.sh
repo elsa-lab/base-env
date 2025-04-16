@@ -17,10 +17,13 @@ sudo apt install lightdm -y
 sudo dpkg -i /opt/base-env/Package/Archives/virtualgl_2.6.5_amd64.deb
 
 # configure VirtualGL
+#   -config Configure server for use with VirtualGL
+#   +s      Open 3D X server access to all users of this machine
+#   +f      Open framebuffer device access to all users of this machine
 sudo vglserver_config -config +s +f
 
 # add users for accessing vglserver
-sudo usermod -aG vglusers root
+# sudo usermod -aG vglusers root
 
 # restart display manager
 sudo service lightdm restart
