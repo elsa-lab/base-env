@@ -18,7 +18,7 @@ fi
 
 sudo adduser ${STUDENT} \
   --ingroup ${GROUP} \
-  --gecos "First Last,RoomNumber,WorkPhone,HomePhone" \
+  --gecos "${STUDENT},RoomNumber,WorkPhone,HomePhone" \
   --disabled-password
 echo "${STUDENT}:${PASSWD}" | sudo chpasswd
 
