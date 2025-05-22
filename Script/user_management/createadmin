@@ -18,7 +18,7 @@ fi
 
 sudo adduser ${ADMIN} \
   --ingroup ${GROUP} \
-  --gecos "First Last,RoomNumber,WorkPhone,HomePhone" \
+  --gecos "${ADMIN},RoomNumber,WorkPhone,HomePhone" \
   --disabled-password
 sudo usermod -aG sudo ${ADMIN}
 echo "${ADMIN}:${PASSWD}" | sudo chpasswd
