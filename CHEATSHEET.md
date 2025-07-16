@@ -47,6 +47,7 @@
 
 - [CPU-Monkey](https://www.cpu-monkey.com/en/)
 - [PassMark](https://www.passmark.com/)
+- [Cultists Network](https://cultists.network/)
 - [Phoronix](https://www.phoronix.com/)
 - [Tom's Hardware](https://www.tomshardware.com/)
 
