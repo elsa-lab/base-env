@@ -64,6 +64,7 @@ cd ${INSTALL_PATH}/Package
 
 ./Dependency/install-essential.sh
 ./Dependency/install-docker.sh
+./Dependency/install-git-lfs.sh
 ./Dependency/install-mujoco-roboti.sh
 ./Dependency/install-mujoco-deepmind.sh
 ./Dependency/install-python36-37.sh 
