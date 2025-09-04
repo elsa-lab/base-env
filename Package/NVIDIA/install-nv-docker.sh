@@ -18,6 +18,9 @@ curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-contai
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 
+sudo nvidia-ctk runtime configure --runtime=docker
+sudo systemctl restart docker
+
 # NOTE: this line break the new version nvidia-container-toolkit
 # Change the user who execute nvidia-container-toolkit
 # Reference: https://askubuntu.com/a/1319123
