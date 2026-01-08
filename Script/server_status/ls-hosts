@@ -3,21 +3,46 @@
 # safer bash script
 set -euo pipefail
 
-# useful variables
-SUFFIX=".cs.nthu.edu.tw"
-HOSTNAME=('anna'       'ariel'      'aurora'     'alice'      'belle'    
-       	  'elsa'       'elsa-latex' 'giselle'    'hellokitty' 'isabel'     
-	  'jasmine'    'kida'       'lady'       'moana'      'nala'       
-	  'olivia'     'pocahontas' 'quinn'      'rapunzel'   'snowwhite'  
-	  'tiana'      'umbreon'    'vanellope')
+# server name to IP address mapping
+declare -A HOST_IP
+# NTU
+HOST_IP['elsa-latex']='140.112.91.81'
+HOST_IP['isabel']='140.112.91.88'
+HOST_IP['lady']='140.112.31.27'
+HOST_IP['moana']='140.112.31.25'
+HOST_IP['pocahontas']='140.112.31.26'
+HOST_IP['quinn']='140.112.91.83'
+HOST_IP['rapunzel']='140.112.91.86'
+HOST_IP['snowwhite']='140.112.91.84'
+HOST_IP['tiana']='140.112.91.85'
+HOST_IP['umbreon']='140.112.91.89'
+HOST_IP['vanellope']='140.112.91.82'
+HOST_IP['winnie']='140.112.91.87'
+HOST_IP['zelda']='140.112.91.80'
+# NTHU
+HOST_IP['anna']='140.114.89.111'
+HOST_IP['ariel']='140.114.89.106'
+HOST_IP['aurora']='140.114.89.107'
+HOST_IP['belle']='140.114.75.146'
+HOST_IP['elsa']='140.114.75.138'
+HOST_IP['hellokitty']='140.114.89.108'
+HOST_IP['nala']='140.114.89.116'
+HOST_IP['xena']='140.114.89.62'
+HOST_IP['yoshi']='140.114.89.63'
+
+# automatically generate hostname array from HOST_IP keys (sorted alphabetically)
+mapfile -t HOSTNAME < <(printf '%s\n' "${!HOST_IP[@]}" | sort)
+
 declare -A STATUS
 udl=$'\e[4m'
 red=$'\e[1;31m'
 end=$'\e[0m'
 
-# ping all hosts
+# ping all hosts using IP addresses
 for (( i=0 ; i < "${#HOSTNAME[@]}" ; i++ )); do
-  STATUS[${HOSTNAME[i]}]=$(nc -z -w 1 ${HOSTNAME[i]}${SUFFIX} 22 2>/dev/null && echo 1 || echo 0)
+  hostname=${HOSTNAME[i]}
+  ip=${HOST_IP[$hostname]}
+  STATUS[$hostname]=$(nc -z -w 1 $ip 22 2>/dev/null && echo 1 || echo 0)
 done
 
 # header
