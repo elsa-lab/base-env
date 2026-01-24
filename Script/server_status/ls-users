@@ -54,7 +54,7 @@ calculate_time_ago() {
   local epoch
   epoch=$(date -d "$timestamp" +%s 2>/dev/null)
 
-  [[ $? -ne 0 ]] && { echo "Unknown|0"; return; }
+  (( $? != 0 )) && { echo "Unknown|0"; return; }
 
   local now=$(date +%s)
   local diff=$((now - epoch))
@@ -224,7 +224,7 @@ lastlog -u 1000- 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r line
   else
     short_timestamp=$(echo "$timestamp" | awk '{printf "%s %s, %s", $2, $3, $NF}')
   fi
-  [[ ${#short_timestamp} -gt 17 ]] && short_timestamp="${short_timestamp:0:14}..."
+  (( ${#short_timestamp} > 17 )) && short_timestamp="${short_timestamp:0:14}..."
 
   display_username=$(add_admin_tag "$username")
 
