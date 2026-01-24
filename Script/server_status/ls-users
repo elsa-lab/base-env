@@ -41,7 +41,7 @@ parse_idle_hours() {
     echo "$((${BASH_REMATCH[1]} * 24))"
   elif [[ "$idle_str" =~ ^([0-9]+):([0-9]+)$ ]]; then
     local first="${BASH_REMATCH[1]}" second="${BASH_REMATCH[2]}"
-    [[ "$second" -gt 59 ]] || [[ "$first" -ge 24 ]] && { echo "0"; return; }
+    (( second > 59 )) || (( first >= 24 )) && { echo "0"; return; }
     echo "$((first + second / 60))"
   else
     echo "0"
@@ -51,7 +51,8 @@ parse_idle_hours() {
 # Calculate time ago from timestamp, return "time_string|months" format for color coding
 calculate_time_ago() {
   local timestamp="$1"
-  local epoch=$(date -d "$timestamp" +%s 2>/dev/null)
+  local epoch
+  epoch=$(date -d "$timestamp" +%s 2>/dev/null)
 
   [[ $? -ne 0 ]] && { echo "Unknown|0"; return; }
 
@@ -59,21 +60,21 @@ calculate_time_ago() {
   local diff=$((now - epoch))
   local months=$((diff / 2592000))
 
-  if [ $diff -lt 60 ]; then
+  if (( diff < 60 )); then
     echo "${diff}s ago|0"
-  elif [ $diff -lt 3600 ]; then
+  elif (( diff < 3600 )); then
     local mins=$((diff / 60))
     echo "${mins}m ago|0"
-  elif [ $diff -lt 86400 ]; then
+  elif (( diff < 86400 )); then
     local hours=$((diff / 3600))
     echo "${hours}h ago|0"
-  elif [ $diff -lt 604800 ]; then
+  elif (( diff < 604800 )); then
     local days=$((diff / 86400))
     echo "${days}d ago|0"
-  elif [ $diff -lt 2592000 ]; then
+  elif (( diff < 2592000 )); then
     local weeks=$((diff / 604800))
     echo "${weeks}w ago|0"
-  elif [ $diff -lt 31536000 ]; then
+  elif (( diff < 31536000 )); then
     echo "${months}mo ago|${months}"
   else
     local years=$((diff / 31536000))
@@ -96,18 +97,15 @@ printf "${end}\n"
 CURRENTLY_LOGGED_IN_USERS=$(w -h 2>/dev/null | awk '{print $1}' | sort -u)
 
 # Process all users with UID >= 1000, sorted alphabetically by username
-lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r line; do
+lastlog -u 1000- 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r line; do
   [[ -z "$line" ]] && continue
 
   username=$(echo "$line" | awk '{print $1}')
   [[ -z "$username" ]] || [[ "$username" == "Username" ]] && continue
 
-  # Skip system users
-  case "$username" in
-    nobody|earlyoom|root|daemon|bin|sys|sync|games|man|lp|mail|news|uucp|proxy|www-data|backup|list|irc|gnats|_apt|messagebus|systemd|_*)
-      continue
-      ;;
-  esac
+  # Skip system users: only show users with home directory in /home (regular users)
+  user_home=$(getent passwd "$username" 2>/dev/null | cut -d: -f6)
+  [[ -z "$user_home" ]] || [[ "$user_home" != /home/* ]] && continue
 
   # Handle currently logged in users
   if echo "$CURRENTLY_LOGGED_IN_USERS" | grep -q "^${username}$"; then
@@ -127,7 +125,7 @@ lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r
         current_login="${w_fields[3]}"
         current_idle="${w_fields[4]}"
       fi
-      
+
       # Get actual IP if From field doesn't contain IP
       if [[ ! "$current_from" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
         ip_from_last=$(last -n 20 "$username" 2>/dev/null | grep -E "^${username}.*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" | head -1 | awk '{
@@ -149,9 +147,9 @@ lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r
     idle_days=$(($(parse_idle_hours "$current_idle") / 24))
 
     printf "  "
-    if [[ "$idle_days" -ge 90 ]]; then
+    if (( idle_days >= 90 )); then
       printf "${red}"
-    elif [[ "$idle_days" -ge 30 ]]; then
+    elif (( idle_days >= 30 )); then
       printf "${yellow}"
     fi
     printf "${USER_ARG}" "$display_username"
@@ -168,6 +166,7 @@ lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r
   # Handle never logged in users
   if echo "$line" | grep -q "Never logged in"; then
     display_username=$(add_admin_tag "$username")
+
     printf "  ${yellow}"
     printf "${USER_ARG}" "$display_username"
     printf "${FROM_ARG}" "-"
@@ -183,7 +182,7 @@ lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r
   # Parse IP address and timestamp from line
   from=$(echo "$line" | awk '{
     for(i=1; i<=NF; i++) {
-      if ($i ~ /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/) { print $i; exit       }
+      if ($i ~ /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/) { print $i; exit }
     }
   }')
   [[ -z "$from" ]] && from="-"
@@ -225,15 +224,15 @@ lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r
   else
     short_timestamp=$(echo "$timestamp" | awk '{printf "%s %s, %s", $2, $3, $NF}')
   fi
-  [[ ${#short_timestamp} -gt 22 ]] && short_timestamp="${short_timestamp:0:19}..."
+  [[ ${#short_timestamp} -gt 17 ]] && short_timestamp="${short_timestamp:0:14}..."
 
   display_username=$(add_admin_tag "$username")
 
   # Color code based on time ago
   printf "  "
-  if [[ "$months" -ge 3 ]]; then
+  if (( months >= 3 )); then
     printf "${red}"
-  elif [[ "$months" -ge 1 ]]; then
+  elif (( months >= 1 )); then
     printf "${yellow}"
   fi
   printf "${USER_ARG}" "$display_username"
