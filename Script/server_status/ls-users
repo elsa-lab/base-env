@@ -1,0 +1,247 @@
+#!/usr/bin/env bash
+
+# safer bash script
+set -euo pipefail
+
+USER_ARG="%-18s"
+TTY_ARG="%-8s"
+FROM_ARG="%-18s"
+LOGIN_ARG="%-10s"
+IDLE_ARG="%-10s"
+LASTLOGIN_ARG="%-17s"
+AGO_ARG="%-10s"
+
+udl=$'\e[4m'
+end=$'\e[0m'
+yellow=$'\e[1;33m'
+red=$'\e[1;31m'
+
+# Add admin tag to username if user has sudo permission
+add_admin_tag() {
+  local username="$1"
+  if groups "$username" 2>/dev/null | grep -q '\bsudo\b'; then
+    echo "${username}*"
+  else
+    echo "$username"
+  fi
+}
+
+# Parse idle time and return hours for color coding
+parse_idle_hours() {
+  local idle_str="$1"
+
+  if [[ -z "$idle_str" ]] || [[ "$idle_str" == "-" ]]; then
+    echo "0"
+    return
+  fi
+
+  if [[ "$idle_str" =~ ^([0-9]+\.?[0-9]*)s$ ]]; then
+    echo "0"
+  elif [[ "$idle_str" =~ ^([0-9]+)days?$ ]]; then
+    echo "$((${BASH_REMATCH[1]} * 24))"
+  elif [[ "$idle_str" =~ ^([0-9]+):([0-9]+)$ ]]; then
+    local first="${BASH_REMATCH[1]}" second="${BASH_REMATCH[2]}"
+    [[ "$second" -gt 59 ]] || [[ "$first" -ge 24 ]] && { echo "0"; return; }
+    echo "$((first + second / 60))"
+  else
+    echo "0"
+  fi
+}
+
+# Calculate time ago from timestamp, return "time_string|months" format for color coding
+calculate_time_ago() {
+  local timestamp="$1"
+  local epoch=$(date -d "$timestamp" +%s 2>/dev/null)
+
+  [[ $? -ne 0 ]] && { echo "Unknown|0"; return; }
+
+  local now=$(date +%s)
+  local diff=$((now - epoch))
+  local months=$((diff / 2592000))
+
+  if [ $diff -lt 60 ]; then
+    echo "${diff}s ago|0"
+  elif [ $diff -lt 3600 ]; then
+    local mins=$((diff / 60))
+    echo "${mins}m ago|0"
+  elif [ $diff -lt 86400 ]; then
+    local hours=$((diff / 3600))
+    echo "${hours}h ago|0"
+  elif [ $diff -lt 604800 ]; then
+    local days=$((diff / 86400))
+    echo "${days}d ago|0"
+  elif [ $diff -lt 2592000 ]; then
+    local weeks=$((diff / 604800))
+    echo "${weeks}w ago|0"
+  elif [ $diff -lt 31536000 ]; then
+    echo "${months}mo ago|${months}"
+  else
+    local years=$((diff / 31536000))
+    echo "${years}y ago|$((years * 12))"
+  fi
+}
+
+# Print table header
+printf "\n  ${udl}"
+printf "${USER_ARG}" "User"
+printf "${FROM_ARG}" "From"
+printf "${TTY_ARG}" "TTY"
+printf "${LOGIN_ARG}" "Login"
+printf "${IDLE_ARG}" "Idle"
+printf "${LASTLOGIN_ARG}" "Last Login"
+printf "${AGO_ARG}" "Time Ago"
+printf "${end}\n"
+
+# Get list of currently logged in users
+CURRENTLY_LOGGED_IN_USERS=$(w -h 2>/dev/null | awk '{print $1}' | sort -u)
+
+# Process all users with UID >= 1000, sorted alphabetically by username
+lastlog -u 1000-65534 2>/dev/null | tail -n +2 | sort -k1,1 | while IFS= read -r line; do
+  [[ -z "$line" ]] && continue
+
+  username=$(echo "$line" | awk '{print $1}')
+  [[ -z "$username" ]] || [[ "$username" == "Username" ]] && continue
+
+  # Skip system users
+  case "$username" in
+    nobody|earlyoom|root|daemon|bin|sys|sync|games|man|lp|mail|news|uucp|proxy|www-data|backup|list|irc|gnats|_apt|messagebus|systemd|_*)
+      continue
+      ;;
+  esac
+
+  # Handle currently logged in users
+  if echo "$CURRENTLY_LOGGED_IN_USERS" | grep -q "^${username}$"; then
+    current_info=$(w -h | grep "^${username} " | head -1)
+    if [[ -n "$current_info" ]]; then
+      read -a w_fields <<< "$current_info"
+
+      # Determine field positions based on TTY presence
+      if [[ "${w_fields[1]}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]] || [[ "${w_fields[1]}" =~ ^[0-9]+:[0-9]+$ ]]; then
+        current_tty="-"
+        current_from="${w_fields[1]}"
+        current_login="${w_fields[2]}"
+        current_idle="${w_fields[3]}"
+      else
+        current_tty="${w_fields[1]}"
+        current_from="${w_fields[2]}"
+        current_login="${w_fields[3]}"
+        current_idle="${w_fields[4]}"
+      fi
+      
+      # Get actual IP if From field doesn't contain IP
+      if [[ ! "$current_from" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        ip_from_last=$(last -n 20 "$username" 2>/dev/null | grep -E "^${username}.*[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" | head -1 | awk '{
+          for(i=1; i<=NF; i++) {
+            if ($i ~ /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/) { print $i; exit }
+          }
+        }')
+        [[ -n "$ip_from_last" ]] && current_from="$ip_from_last"
+      fi
+      [[ -z "$current_from" ]] && current_from="-"
+    else
+      current_tty="-"
+      current_from="-"
+      current_login="-"
+      current_idle="-"
+    fi
+
+    display_username=$(add_admin_tag "$username")
+    idle_days=$(($(parse_idle_hours "$current_idle") / 24))
+
+    printf "  "
+    if [[ "$idle_days" -ge 90 ]]; then
+      printf "${red}"
+    elif [[ "$idle_days" -ge 30 ]]; then
+      printf "${yellow}"
+    fi
+    printf "${USER_ARG}" "$display_username"
+    printf "${FROM_ARG}" "$current_from"
+    printf "${TTY_ARG}" "$current_tty"
+    printf "${LOGIN_ARG}" "$current_login"
+    printf "${IDLE_ARG}" "$current_idle"
+    printf "${LASTLOGIN_ARG}" "Now"
+    printf "${AGO_ARG}" "Now"
+    printf "${end}\n"
+    continue
+  fi
+
+  # Handle never logged in users
+  if echo "$line" | grep -q "Never logged in"; then
+    display_username=$(add_admin_tag "$username")
+    printf "  ${yellow}"
+    printf "${USER_ARG}" "$display_username"
+    printf "${FROM_ARG}" "-"
+    printf "${TTY_ARG}" "-"
+    printf "${LOGIN_ARG}" "-"
+    printf "${IDLE_ARG}" "-"
+    printf "${LASTLOGIN_ARG}" "Never logged in"
+    printf "${AGO_ARG}" "Never"
+    printf "${end}\n"
+    continue
+  fi
+
+  # Parse IP address and timestamp from line
+  from=$(echo "$line" | awk '{
+    for(i=1; i<=NF; i++) {
+      if ($i ~ /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/) { print $i; exit       }
+    }
+  }')
+  [[ -z "$from" ]] && from="-"
+
+  timestamp=$(echo "$line" | awk '{
+    for(i=1; i<=NF; i++) {
+      if ($i ~ /^[A-Z][a-z][a-z]$/ && $(i+1) ~ /^[A-Z][a-z][a-z]$/ && $(i+2) ~ /^[0-9]+$/) {
+        for(j=i; j<=NF; j++) {
+          printf "%s", $j
+          if (j < NF) printf " "
+        }
+        printf "\n"
+        exit
+      }
+    }
+  }')
+
+  if [[ -z "$timestamp" ]]; then
+    printf "  ${USER_ARG}" "$username"
+    printf "${FROM_ARG}" "$from"
+    printf "${TTY_ARG}" "-"
+    printf "${LOGIN_ARG}" "-"
+    printf "${IDLE_ARG}" "-"
+    printf "${LASTLOGIN_ARG}" "Unknown"
+    printf "${AGO_ARG}" "Unknown\n"
+    continue
+  fi
+
+  # Calculate time ago and format timestamp
+  ago_result=$(calculate_time_ago "$timestamp")
+  ago=$(echo "$ago_result" | cut -d'|' -f1)
+  months=$(echo "$ago_result" | cut -d'|' -f2)
+
+  current_year=$(date +%Y)
+  timestamp_year=$(echo "$timestamp" | awk '{print $NF}')
+
+  if [[ "$timestamp_year" == "$current_year" ]]; then
+    short_timestamp=$(echo "$timestamp" | awk '{printf "%s %s %s", $2, $3, $4}')
+  else
+    short_timestamp=$(echo "$timestamp" | awk '{printf "%s %s, %s", $2, $3, $NF}')
+  fi
+  [[ ${#short_timestamp} -gt 22 ]] && short_timestamp="${short_timestamp:0:19}..."
+
+  display_username=$(add_admin_tag "$username")
+
+  # Color code based on time ago
+  printf "  "
+  if [[ "$months" -ge 3 ]]; then
+    printf "${red}"
+  elif [[ "$months" -ge 1 ]]; then
+    printf "${yellow}"
+  fi
+  printf "${USER_ARG}" "$display_username"
+  printf "${FROM_ARG}" "$from"
+  printf "${TTY_ARG}" "-"
+  printf "${LOGIN_ARG}" "-"
+  printf "${IDLE_ARG}" "-"
+  printf "${LASTLOGIN_ARG}" "$short_timestamp"
+  printf "${AGO_ARG}" "$ago"
+  printf "${end}\n"
+done
