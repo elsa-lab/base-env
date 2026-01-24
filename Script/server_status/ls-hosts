@@ -7,6 +7,7 @@ set -euo pipefail
 declare -A HOST_IP
 # NTU
 HOST_IP['elsa-latex']='140.112.91.81'
+HOST_IP['frieren']='140.112.91.80'
 HOST_IP['isabel']='140.112.91.88'
 HOST_IP['lady']='140.112.31.27'
 HOST_IP['moana']='140.112.31.25'
@@ -18,7 +19,6 @@ HOST_IP['tiana']='140.112.91.85'
 HOST_IP['umbreon']='140.112.91.89'
 HOST_IP['vanellope']='140.112.91.82'
 HOST_IP['winnie']='140.112.91.87'
-HOST_IP['zelda']='140.112.91.80'
 # NTHU
 HOST_IP['anna']='140.114.89.111'
 HOST_IP['ariel']='140.114.89.106'
