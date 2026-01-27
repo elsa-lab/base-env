@@ -105,11 +105,11 @@ cd ${INSTALL_PATH}/Script
 # User scripts
 #-----------------------------------------------------------
 
-for s in $(ls -A -I profile.d); do
-  for ss in $(ls ${s}); do
-    sudo ln -fns $(pwd)/${s}/${ss} ${BIN_PATH}/${ss}
-  done
-done
+sudo ln -sfn $(pwd)/bin/* ${BIN_PATH}/
+
+# Update these symbolic links frequently
+(sudo crontab -u root -l; echo "0 0 * * * cd ${INSTALL_PATH}/Script; sudo ln -sfn $(pwd)/bin/* ${BIN_PATH}/") |
+  sudo crontab -u root - 
 
 # VNC starting script shall be in the same path of Xvnc and vncpasswd (i.e., /usr/bin)
 sudo rm /usr/local/bin/vncserver
