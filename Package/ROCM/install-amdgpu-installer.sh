@@ -17,12 +17,12 @@ AMDGPU_LINK="https://repo.radeon.com/amdgpu-install/${AMDGPU_VERSION}/ubuntu/${U
 sudo -v
 
 # Use the amdgpu-installer script from the latest ROCm release you want to install
-printf "Downloading AMDGPU-installer ${ADMGPU_VERSION} ... "
+printf "Downloading AMDGPU-installer ${AMDGPU_VERSION} ... "
 wget $AMDGPU_LINK
 echo "Done."
 
 # Install AMDGPU-installer
-printf "Installing AMDGPU-installer ${ADMGPU_VERSION}... "
+printf "Installing AMDGPU-installer ${AMDGPU_VERSION}... "
 sudo apt update
 sudo apt install -y ./"${AMDGPU_INSTALLER}"
 sudo apt update
@@ -32,4 +32,4 @@ echo "Done."
 # dkms status
 
 # clean up 
-rm "${AMDGPU_INSTALLER}
+rm "${AMDGPU_INSTALLER}"
