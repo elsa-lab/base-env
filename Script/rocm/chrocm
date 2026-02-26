@@ -9,6 +9,10 @@ if [ $# -eq 0 ]; then
   exit 1
 fi
 
+if [ -v HIP_VISIBLE_DEVICES ] && [ -z "${HIP_VISIBLE_DEVICES}" ]; then
+  echo "Warning: \${HIP_VISIBLE_DEVICES} is an empty string"
+fi
+
 VERSION=$1
 PREFIX="/opt/rocm-"
 SOURCE="${PREFIX}${VERSION}"

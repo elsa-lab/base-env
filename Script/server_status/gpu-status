@@ -59,12 +59,11 @@ function gpu_name ()
 
 function amd_info ()
 {
-  SMI=rocm-smi
-  INFO=rocminfo
-  Q_GPU="--showuse --showmeminfo vram --showuniqueid --csv"
+  SMI=$(readlink -f /opt/rocm/bin/rocm-smi)
+  Q_GPU="--showuse --showmeminfo vram --showproductname --csv"
   SKIP_TAIL="head -n -1"
   GPU_INFO=$(${SMI} ${Q_GPU} | ${SKIP_TAIL})
-  PROCESSES=$(${SMI} --showpidgpus | grep -v PID)
+  PROCESSES=$(${SMI} --showpidgpus --csv 2>/dev/null | grep -v "WARNING" | ${SKIP_TAIL} || true)
 
   FIRST=1
   declare -A COL
@@ -77,38 +76,37 @@ function amd_info ()
       continue
     fi
 
-    if [[ ${line[1]} == "N/A" ]] ; then  # skip the integrated GPU
-      continue
-    fi
-
-    GUID=${COL["Unique ID"]}
+    NAME=${COL["Card Series"]}
     UTIL=${COL["GPU use (%)"]}
     MEM_USED=${COL["VRAM Total Used Memory (B)"]}
     MEM_TOT=${COL["VRAM Total Memory (B)"]}
 
-    line[0]=${line[0]/card/}
-    line[${GUID}]=$(gpu_name ${line[${GUID}]})
-    line[${GUID}]=${line[${GUID}]/AMD /}
-    line[${MEM_USED}]=$(( ${line[${MEM_USED}]} / 1024 / 1024 ))
-    line[${MEM_TOT}]=$(( ${line[${MEM_TOT}]} / 1024 / 1024 ))
+    if [[ ${line[${UTIL}]} == "N/A" ]] ; then  # skip the integrated GPU
+      continue
+    fi
+
+    gpu_idx=${line[0]/card/}
+    gpu_name="${line[${NAME}]}"
+    gpu_name="${gpu_name/AMD /}"
+    mem_used=$(( ${line[${MEM_USED}]} / 1024 / 1024 ))
+    mem_free=$(( (${line[${MEM_TOT}]} - ${line[${MEM_USED}]}) / 1024 / 1024 ))
 
     printf "  "
-    printf "${GPU_ARG}" "${line[0]}"
-    printf "${NAME_ARG}" "${line[ ${GUID} ]}"
-    if [ "${line[ ${UTIL} ]}" -gt 85 ]; then
+    printf "${GPU_ARG}" "${gpu_idx}"
+    printf "${NAME_ARG}" "${gpu_name:0:20}"
+    if [ "${line[${UTIL}]}" -gt 85 ]; then
       printf "${RED}"
     else
       printf "${GREEN}"
     fi
-    printf "${UTIL_ARG}${RESET}" "${line[ ${UTIL} ]}%"
-    printf "${MEM_ARG}" "${line[ ${MEM_USED} ]}M"
-    printf "${MEM_ARG}" "${line[ ${MEM_TOT} ]}M"
-    uuid="${line[0]}"
-    echo "${PROCESSES}" | grep "${uuid}" | wc -l
+    printf "${UTIL_ARG}${RESET}" "${line[${UTIL}]}%"
+    printf "${MEM_ARG}" "${mem_used}M"
+    printf "${MEM_ARG}" "${mem_free}M"
+    echo "${PROCESSES}" | grep -c "card${gpu_idx}" 2>/dev/null || true
   done
 }
 
-type nvidia-smi &> /dev/null && nvidia_info
-type rocm-smi &> /dev/null && amd_info
+nvidia-smi &> /dev/null && nvidia_info
+[ -x /opt/rocm/bin/rocm-smi ] && amd_info
 
 exit 0
