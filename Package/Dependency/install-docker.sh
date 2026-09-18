@@ -40,8 +40,15 @@ sudo apt install -y \
     docker-buildx-plugin \
     docker-compose-plugin
 
+# bind published container ports to localhost
+echo '{
+  "ip": "127.0.0.1"
+}' | sudo tee /etc/docker/daemon.json > /dev/null
+
 # start docker
-sudo systemctl enable --now docker
+# the daemon is already started by apt, so restart it to apply the config above
+sudo systemctl enable docker
+sudo systemctl restart docker
 
 # create the docker group
 sudo getent group docker || sudo groupadd docker
